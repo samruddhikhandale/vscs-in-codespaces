@@ -1,3 +1,6 @@
+# add oh-my-bash
+wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O - | sh -C
+
 BASH_RC_FILE=~/.bashrc
 
 PRE_OMB_BASH_CONFIG=~/.bashrc.pre-oh-my-bash
@@ -98,3 +101,6 @@ then
 fi
 
 " >> $BASH_RC_FILE
+
+# install Azure Credentials Provider for NuGet
+wget -c https://github.com/microsoft/artifacts-credprovider/releases/download/v0.1.22/Microsoft.NuGet.CredentialProvider.tar.gz -O - | tar -xz -C ~/.nuget
