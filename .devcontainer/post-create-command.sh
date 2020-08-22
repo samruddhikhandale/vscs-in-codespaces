@@ -31,16 +31,9 @@ gulp release && yarn compile
 LIVESHARE_WORKSPACE_FILE_NAME="liveshare.code-workspace"
 LIVESHARE_WORKSPACE_FILE_PATH=$(realpath "$CODESPACE_DEFAULT_PATH/../liveshare/liveshare.code-workspace")
 
-echo -e "$PALETTE_CYAN\n💡  Do you want to open $PALETTE_PURPLE$LIVESHARE_WORKSPACE_FILE_NAME$PALETTE_CYAN file?$PALETTE_RESET [Y/n] \n"
+OPEN_WP="code -r \"$LIVESHARE_WORKSPACE_FILE_PATH\""
+echo -e "\nalias code:wp='$OPEN_WP'" >> ~/.bashrc
 
-printf "Answer: "
-read ANSWER
+echo -e "$PALETTE_CYAN\n💡  All done, type$PALETTE_PURPLE code:wp$PALETTE_CYAN to open $PALETTE_PURPLE$LIVESHARE_WORKSPACE_FILE_NAME$PALETTE_CYAN file $PALETTE_RESET\n"
 
-LOWERCASE_ANSWER=$(echo "$ANSWER" | tr '[:upper:]' '[:lower:]')
-
-if [ "$LOWERCASE_ANSWER" = "y" ] || [ -z "$LOWERCASE_ANSWER" ]; then
-    OPEN_WP="code -r \"$LIVESHARE_WORKSPACE_FILE_PATH\""
-    echo -e "\nalias code:wp='$OPEN_WP'" >> ~/.bashrc
-
-    eval $OPEN_WP
-fi
+source ~/.bashrc
