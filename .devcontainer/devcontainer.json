@@ -1,21 +1,22 @@
 {
 	"$schema": "https://raw.githubusercontent.com/microsoft/vscode/master/extensions/configuration-editing/schemas/devContainer.schema.json",
-	"name": "ADO in GitHub Codespaces",
+	"name": "LiveShare Extension in GitHub Codespaces",
+	"image": "legomushroom/liveshare-base-image:v1",
 	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
 	"extensions": [],
 	"remoteEnv": {
 		// [change] ADO repo URL
-		"ADO_REPO_URL": "",
+		"ADO_REPO_URL": "https://devdiv.visualstudio.com/DevDiv/_git/Cascade",
 		// [change] relative to the ADO repo root
-		"ADO_REPO_DEFAULT_PATH": "",
+		"ADO_REPO_DEFAULT_PATH": "/vscode/extension",
 		/*
 		 * [change][optional] absolute path to .npmrc file - /root/workspace/{this-repo-name}/path/from/repo/root/.npmrc
 		 * if the env variable is not set, it will pick up the `.npmrc` file in the repo root, if present
 		 * if file not found with above, then it will pick up the `.npmrc` file in the $ADO_REPO_DEFAULT_PATH, if present
 		 */
-		"NPMRC_CONFIG_FILE_PATH": "",
+		"NPMRC_CONFIG_FILE_PATH": "/root/workspace/liveshare-in-codespaces/vscode/.npmrc",
 		/*
 		 * [change][optional] absolute path to NuGet.Config file - /root/workspace/{this-repo-name}/path/from/repo/root/NuGet.Config
 		 * if the env variable is not set, it will pick up the `NuGet.Config` file in the repo root, if present
