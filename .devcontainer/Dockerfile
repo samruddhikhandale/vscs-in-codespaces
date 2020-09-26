@@ -33,6 +33,7 @@ RUN apt-get update \
         libstdc++6 \
         libunwind8 \
         libuuid1 \
+	libsecret-1-dev \
         zlib1g \
     && rm -rf /var/lib/apt/lists/*
 
