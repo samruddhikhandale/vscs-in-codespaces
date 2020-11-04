@@ -30,6 +30,4 @@
 	 * once the Codespace is fully set up.
 	 */
 	"postCreateCommand": "/bin/sh .codespaces/post-create.sh",
-	
-	"remoteUser": "codespacesdev"
 }
