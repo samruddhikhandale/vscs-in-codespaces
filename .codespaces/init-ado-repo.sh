@@ -88,7 +88,7 @@ if [ -z "$ADO_REPO_URL" ]; then
 
 fi
 
-if [ -z "$ADO_PAT"]; then
+if [ -z "$ADO_PAT" ]; then
     echo -e $PALETTE_CYAN"Please provide your ADO PAT\n"$PALETTE_RESET
 
     # reading the PAT
