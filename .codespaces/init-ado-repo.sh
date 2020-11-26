@@ -21,6 +21,10 @@ if [ -f ~/.cs-environment ]; then
     source ~/.cs-environment
 fi
 
+if [ -n $ADO_PAT ]; then
+    NONINTERACTIVE=true
+fi
+
 GREETINGS=("Bonjour" "Hello" "Salam" "Привет" "Вітаю" "Hola" "Zdravo" "Ciao" "Salut" "Hallo" "Nǐ hǎo" "Xin chào" "Yeoboseyo" "Aloha" "Namaskaram" "Wannakam" "Dzień dobry")
 GREETING=${GREETINGS[$RANDOM % ${#GREETINGS[@]} ]}
 
@@ -40,18 +44,15 @@ echo -e $PALETTE_WHITE"\n
 
 echo -e $PALETTE_GREEN"\n\n     🖖 👽  $GREETING, Codespacer 👽 🖖\n"$PALETTE_RESET
 
-sleep 1s
+if [ -z "$NONINTERACTIVE" ]; then
+    sleep 1s
+fi
 
 echo -e $PALETTE_PURPLE"\n🏃 Lets setup the Codespace"$PALETTE_RESET
 
-sleep 0.25s
-
-
-
-
-
-
-
+if [ -z "$NONINTERACTIVE" ]; then
+    sleep 0.25s
+fi
 
 if [ -z "$ADO_REPO_URL" ]; then
 
@@ -229,9 +230,6 @@ if ! [ -z $NUGET_FILE_PATH ] 2> /dev/null && [ -f $NUGET_FILE_PATH ]; then
   " > ~/.nuget/NuGet/NuGet.Config
 fi
 
-
-
-
 # get the .npmrc file path
 unset NPMRC_FILE_PATH
 # 1. check the NPMRC_CONFIG_FILE_PATH variable set by the uer first
@@ -273,10 +271,6 @@ $CLEAN_FEED_URL:email=npm requires email to be set but doesn't use the value\n
 fi
 
 echo -e $FEEDS_STRING >> ~/.npmrc
-
-
-
-
 
 cd $CODESPACE_DEFAULT_PATH
 
