@@ -141,7 +141,7 @@ git remote remove github-origin &>/dev/null
 git remote rename origin github-origin &>/dev/null
 
 #git remote remove origin
-git remote add origin https://PAT:$ADO_PAT_INPUT@$CLEAN_ADO_ORIGIN
+git remote add origin https://PAT:$ADO_PAT@$CLEAN_ADO_ORIGIN
 
 GIT_DEFAULT_BRANCH_NAME=$(git remote show origin | grep "HEAD branch\: " | sed 's/HEAD branch\: //g' | xargs)
 
