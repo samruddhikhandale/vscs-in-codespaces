@@ -103,3 +103,8 @@ fi
 
 # install Azure Credentials Provider for NuGet
 wget -c https://github.com/microsoft/artifacts-credprovider/releases/download/v0.1.22/Microsoft.NuGet.CredentialProvider.tar.gz -O - | tar -xz -C ~/.nuget
+
+# Run the init script if ADO_PAT is already defined via secrets
+if [ -z "$ADO_PAT" ]; then
+  ../init
+fi
