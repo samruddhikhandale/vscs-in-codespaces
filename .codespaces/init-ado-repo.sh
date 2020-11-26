@@ -132,7 +132,7 @@ if [ -z "$ADO_PAT" ]; then
         exit 1
     fi
 
-    ADO_PAT=$ADO_PAT_INPUT
+    export ADO_PAT=$ADO_PAT_INPUT
 fi
 
 EMPTY_STRING=""
@@ -157,10 +157,6 @@ git branch --track github-main
 git pull origin $GIT_DEFAULT_BRANCH_NAME:$GIT_DEFAULT_BRANCH_NAME --force --no-tags
 
 git checkout $GIT_DEFAULT_BRANCH_NAME &>/dev/null
-
-if [ "$ADO_PAT" != "$ADO_PAT_INPUT" ]; then
-    export ADO_PAT=$ADO_PAT_INPUT
-fi
 
 export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
 # replace env variable reference in the .npmrc
