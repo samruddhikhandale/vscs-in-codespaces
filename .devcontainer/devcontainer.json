@@ -10,7 +10,7 @@
 		// [change] ADO repo URL
 		"ADO_REPO_URL": "https://devdiv.visualstudio.com/DevDiv/_git/Cascade",
 		// [change] relative to the ADO repo root
-		"ADO_REPO_DEFAULT_PATH": "/vscode/extension",
+		"ADO_REPO_DEFAULT_PATH": "/vscode/codespaces",
 		/*
 		 * [change][optional] absolute path to .npmrc file - /root/workspace/{this-repo-name}/path/from/repo/root/.npmrc
 		 * if the env variable is not set, it will pick up the `.npmrc` file in the repo root, if present
