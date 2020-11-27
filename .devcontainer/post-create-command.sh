@@ -12,7 +12,7 @@ yarn compile
 ## done, ask to open the [codespaces.code-workspace] file 🎉
 
 WORKSPACE_FILE_NAME="codespaces.code-workspace"
-WORKSPACE_FILE_PATH=$CODESPACE_ROOT/vscode/codespaces/codespaces.code-workspace")
+WORKSPACE_FILE_PATH=$CODESPACE_ROOT/vscode/codespaces/codespaces.code-workspace
 
 OPEN_WP="code -r \"$WORKSPACE_FILE_PATH\""
 echo -e "\nalias code:wp='$OPEN_WP'" >> ~/.bashrc
