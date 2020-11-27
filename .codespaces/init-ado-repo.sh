@@ -149,9 +149,7 @@ GIT_DEFAULT_BRANCH_NAME=$(git remote show origin | grep "HEAD branch\: " | sed '
 echo -e $PALETTE_LIGHT_YELLOW"\n ⌬ Fetching the repo\n"$PALETTE_RESET
 
 git reset --hard
-git checkout main
-
-git branch --track github-main
+git branch --track github
 
 # clone the ADO repo
 git pull origin $GIT_DEFAULT_BRANCH_NAME:$GIT_DEFAULT_BRANCH_NAME --force --no-tags
