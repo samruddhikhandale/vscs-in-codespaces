@@ -20,7 +20,7 @@
 
 ![image](https://user-images.githubusercontent.com/1478800/100970585-14bf3900-34ea-11eb-99e5-553cdc9eb477.png)
 
-4. Run `yarn start:bare` to start the portal, it will auto-forward the port `5000`.
+4. Run `yarn start` to start the portal, it will auto-forward the port `5000`.
 
 ![image](https://user-images.githubusercontent.com/1478800/100968769-d2482d00-34e6-11eb-9c4e-80cb1322b81a.png)
 
