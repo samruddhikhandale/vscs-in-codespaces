@@ -1,10 +1,10 @@
 # GitHub Codespaces extension in Codespaces
 
-Build and debug the GitHub Codespaces extension in GitHub Codespaces with few clicks.
+Build and debug the GitHub Codespaces extension in GitHub Codespaces
 
-### Getting Started
+## Getting Started
 
-#### One-time setup
+### One-time setup
 1. If you do not have write-access to the `vsls-contrib/vscs-in-codespaces` repo, go ahead and fork it now
 1. Go to https://dev.azure.com/devdiv/_usersSettings/tokens and generate a Personal Access Token that will be used to clone the repo where the Codespaces extension lives
 1. Click `New Token` and select the following settings:
@@ -40,6 +40,6 @@ That's it, you're ready to start creating Codespaces! :rocket:
 ### Miscellaneous
 1. Before committing changes, ensure there are no ESLint errors. You can run `yarn eslint-fix` to automatically fix any linting errors. If you do not fix these errors, it will fail the PR build and block your PR from merging.
   
-### Issues/Feedback
+## Issues/Feedback
 
-- Feedback appreciated, create issues on this repo if anything 🤗
+Feedback appreciated, create issues on this repo if you have any questions or run into issues 🤗
