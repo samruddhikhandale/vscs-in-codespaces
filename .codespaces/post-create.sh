@@ -11,6 +11,8 @@ fi
 
 # add .bashrc config
 echo "
+source ~/.cs-environment
+
 ## Color variables
 
 # Dimmed text
