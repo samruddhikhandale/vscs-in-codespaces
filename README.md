@@ -32,6 +32,7 @@
 
 7. Done.
 
+![image](https://user-images.githubusercontent.com/1478800/100969828-9746f900-34e8-11eb-840a-3ff9f44506bf.png)
 
 **Issues/Feedback**
 

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo "export CODESPACE_DEFAULT_PATH=\"$CODESPACE_ROOT$ADO_REPO_DEFAULT_PATH\"" >> ~/.bashrc
+echo "$(echo "export CODESPACE_DEFAULT_PATH=\"$CODESPACE_ROOT$ADO_REPO_DEFAULT_PATH\""; cat ~/.bashrc)" > ~/.bashrc
 
 source .codespaces/init-ado-repo.sh
