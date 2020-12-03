@@ -55,7 +55,6 @@ export PALETTE_RESET='\e[0m'
 
 # workspace
 export CODESPACE_ROOT=$(pwd)
-export CODESPACE_DEFAULT_PATH="\$CODESPACE_ROOT\$ADO_REPO_DEFAULT_PATH"
 alias cdroot='cd \$CODESPACE_ROOT'
 alias cddefault='cd \$CODESPACE_DEFAULT_PATH'
 alias ya='yarn'
@@ -96,12 +95,10 @@ if ! [ -z \$CODESPACE_DEFAULT_PATH ] 2> /dev/null && [ -d \$CODESPACE_DEFAULT_PA
 elif [ \$(basename \"\$0\") != 'init' ]
 then
   clear
-  echo -e \"\$PALETTE_DIM\n💡  Run\$PALETTE_BLUE ./init\$PALETTE_RESET\$PALETTE_DIM when ready.\n\$PALETTE_RESET\"
+  echo -e \"\$PALETTE_CYAN\n💡  Run\$PALETTE_BLUE ./init\$PALETTE_RESET\$PALETTE_CYAN when ready.\n\$PALETTE_RESET\"
 fi
 
 " >> $BASH_RC_FILE
 
-# Run the init script if ADO_PAT is already defined via secrets
-if [ -n "$ADO_PAT" ]; then
-  ./init
-fi
+# install Azure Credentials Provider for NuGet
+wget -c https://github.com/microsoft/artifacts-credprovider/releases/download/v0.1.22/Microsoft.NuGet.CredentialProvider.tar.gz -O - | tar -xz -C ~/.nuget

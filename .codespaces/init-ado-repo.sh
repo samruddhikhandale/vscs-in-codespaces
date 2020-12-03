@@ -21,10 +21,6 @@ if [ -f ~/.cs-environment ]; then
     source ~/.cs-environment
 fi
 
-if [ -n $ADO_PAT ]; then
-    NONINTERACTIVE=true
-fi
-
 GREETINGS=("Bonjour" "Hello" "Salam" "Привет" "Вітаю" "Hola" "Zdravo" "Ciao" "Salut" "Hallo" "Nǐ hǎo" "Xin chào" "Yeoboseyo" "Aloha" "Namaskaram" "Wannakam" "Dzień dobry")
 GREETING=${GREETINGS[$RANDOM % ${#GREETINGS[@]} ]}
 
@@ -44,15 +40,18 @@ echo -e $PALETTE_WHITE"\n
 
 echo -e $PALETTE_GREEN"\n\n     🖖 👽  $GREETING, Codespacer 👽 🖖\n"$PALETTE_RESET
 
-if [ -z "$NONINTERACTIVE" ]; then
-    sleep 1s
-fi
+sleep 1s
 
 echo -e $PALETTE_PURPLE"\n🏃 Lets setup the Codespace"$PALETTE_RESET
 
-if [ -z "$NONINTERACTIVE" ]; then
-    sleep 0.25s
-fi
+sleep 0.25s
+
+
+
+
+
+
+
 
 if [ -z "$ADO_REPO_URL" ]; then
 
@@ -89,50 +88,105 @@ if [ -z "$ADO_REPO_URL" ]; then
 
 fi
 
-if [ -z "$ADO_PAT" ]; then
-    echo -e $PALETTE_CYAN"Please provide your ADO PAT\n"$PALETTE_RESET
 
-    # reading the PAT
-    unset CHARCOUNT
-    unset ADO_PAT_INPUT
-    PROMPT=" ↳ PAT code[R/W] + packaging[R]: "
 
-    stty -echo
 
-    CHARCOUNT=0
-    while IFS= read -p "$PROMPT" -r -s -n 1 CHAR
-    do
-        # Enter - accept password
-        if [[ $CHAR == $'\0' ]] ; then
-            break
-        fi
+unset AZ_DO_USERNAME_SUFFIX;
+if [ -z "$AZ_DO_USERNAME" ]; then
+    AZ_DO_USERNAME_SUFFIX=""
+else
+    AZ_DO_USERNAME_SUFFIX=$PALETTE_CYAN"(➥ to reuse *$AZ_DO_USERNAME*)"$PALETTE_RESET
+fi
 
-        # Backspace
-        if [[ $CHAR == $'\177' ]] ; then
-            if [ $CHARCOUNT -gt 0 ] ; then
-                CHARCOUNT=$((CHARCOUNT-1))
-                PROMPT=$'\b \b'
-                ADO_PAT_INPUT="${PASSWORD%?}"
-            else
-                PROMPT=''
-            fi
-        else
-            CHARCOUNT=$((CHARCOUNT+1))
-            PROMPT='*'
-            ADO_PAT_INPUT+="$CHAR"
-        fi
-    done
+echo -e $PALETTE_CYAN"\n- Please provide your ADO username\n"$PALETTE_RESET
 
-    stty echo
-    echo -e " "$PALETTE_RESET
+printf " ↳ ADO Username$AZ_DO_USERNAME_SUFFIX: $PALETTE_PURPLE"
 
-    # check if PAT set
-    if [ -z ${ADO_PAT_INPUT} ]; then
-        echo -e $PALETTE_RED"\n  🐢  No PAT - Zero FLOPS per watt\n"$PALETTE_RESET
+read AZ_DO_USERNAME_INPUT
+
+echo -e " $PALETTE_RESET"
+
+if [ -z "$AZ_DO_USERNAME_INPUT" ]; then
+    if [ -z "$AZ_DO_USERNAME" ]; then
+        echo -e $PALETTE_RED"  🗿 No name - no fame"$PALETTE_RESET
         exit 1
+    else
+        AZ_DO_USERNAME_INPUT=$AZ_DO_USERNAME
+        echo -e $PALETTE_DIM"  * reusing *$AZ_DO_USERNAME_INPUT* as ADO username.\n"$PALETTE_RESET
+    fi
+fi
+
+IFS=@ read -r username domain <<< "$AZ_DO_USERNAME_INPUT"
+if [ ! -z "$domain" ]; then
+    AZ_DO_USERNAME_INPUT="$username"
+    echo -e $PALETTE_DIM"  * using *$AZ_DO_USERNAME_INPUT* as ADO username.\n"$PALETTE_RESET
+fi
+
+if [ "$AZ_DO_USERNAME" != "$AZ_DO_USERNAME_INPUT" ]; then
+    export AZ_DO_USERNAME=$AZ_DO_USERNAME_INPUT
+
+    echo "export AZ_DO_USERNAME=$AZ_DO_USERNAME" >> $CACHE_FILE_PATH
+fi
+
+
+
+
+
+
+
+
+echo -e $PALETTE_CYAN"- Thanks, *$AZ_DO_USERNAME*! Please provide your ADO PAT\n"$PALETTE_RESET
+
+unset AZ_DO_PASSWORD_SUFFIX;
+if [ -z "$ADO_PAT" ]; then
+    AZ_DO_PASSWORD_SUFFIX=""
+else
+    AZ_DO_PASSWORD_SUFFIX=$PALETTE_CYAN"(➥ to reuse old PAT)"$PALETTE_RESET
+fi
+
+# reading the PAT
+unset CHARCOUNT
+unset ADO_PAT_INPUT
+PROMPT=" ↳ PAT code[R/W] + packaging[R]$AZ_DO_PASSWORD_SUFFIX: "
+
+stty -echo
+
+CHARCOUNT=0
+while IFS= read -p "$PROMPT" -r -s -n 1 CHAR
+do
+    # Enter - accept password
+    if [[ $CHAR == $'\0' ]] ; then
+        break
     fi
 
-    export ADO_PAT=$ADO_PAT_INPUT
+    # Backspace
+    if [[ $CHAR == $'\177' ]] ; then
+        if [ $CHARCOUNT -gt 0 ] ; then
+            CHARCOUNT=$((CHARCOUNT-1))
+            PROMPT=$'\b \b'
+            ADO_PAT_INPUT="${PASSWORD%?}"
+        else
+            PROMPT=''
+        fi
+    else
+        CHARCOUNT=$((CHARCOUNT+1))
+        PROMPT='*'
+        ADO_PAT_INPUT+="$CHAR"
+    fi
+done
+
+stty echo
+echo -e " "$PALETTE_RESET
+
+# check if PAT set
+if [ -z ${ADO_PAT_INPUT} ]; then
+    if [ -z "$ADO_PAT" ]; then
+        echo -e $PALETTE_RED"\n  🐢  No PAT - Zero FLOPS per watt\n"$PALETTE_RESET
+        exit 1
+    else
+        ADO_PAT_INPUT=$ADO_PAT
+        echo -e $PALETTE_DIM"\n  * reusing the old PAT."$PALETTE_RESET
+    fi
 fi
 
 EMPTY_STRING=""
@@ -142,7 +196,7 @@ git remote remove github-origin &>/dev/null
 git remote rename origin github-origin &>/dev/null
 
 #git remote remove origin
-git remote add origin https://PAT:$ADO_PAT@$CLEAN_ADO_ORIGIN
+git remote add origin https://$AZ_DO_USERNAME:$ADO_PAT_INPUT@$CLEAN_ADO_ORIGIN
 
 GIT_DEFAULT_BRANCH_NAME=$(git remote show origin | grep "HEAD branch\: " | sed 's/HEAD branch\: //g' | xargs)
 
@@ -158,11 +212,14 @@ git pull origin $GIT_DEFAULT_BRANCH_NAME:$GIT_DEFAULT_BRANCH_NAME --force --no-t
 
 git checkout $GIT_DEFAULT_BRANCH_NAME &>/dev/null
 
-export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
-# replace env variable reference in the .npmrc
-sed -i -E "s/_password=.+$/_password=$ADO_PAT_BASE64/g" ~/.npmrc
-# write the token to the env file
-echo -e "export ADO_PAT=$ADO_PAT" >> ~/.cs-environment
+if [ "$ADO_PAT" != "$ADO_PAT_INPUT" ]; then
+    export ADO_PAT=$ADO_PAT_INPUT
+    export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
+    # replace env variable reference in the .npmrc
+    sed -i -E "s/_password=.+$/_password=$ADO_PAT_BASE64/g" ~/.npmrc
+    # write the token to the env file
+    echo -e "export ADO_PAT=$ADO_PAT" >> ~/.cs-environment
+fi
 
 if [ ! -d $CODESPACE_DEFAULT_PATH ]; then
     echo -e $PALETTE_RED"\n ❗ Cannot find the \`$CODESPACE_DEFAULT_PATH\` path, failed clone the repo or the \$ADO_REPO_DEFAULT_PATH not correct?\n"$PALETTE_RESET
@@ -226,6 +283,9 @@ if ! [ -z $NUGET_FILE_PATH ] 2> /dev/null && [ -f $NUGET_FILE_PATH ]; then
   " > ~/.nuget/NuGet/NuGet.Config
 fi
 
+
+
+
 # get the .npmrc file path
 unset NPMRC_FILE_PATH
 # 1. check the NPMRC_CONFIG_FILE_PATH variable set by the uer first
@@ -267,6 +327,10 @@ $CLEAN_FEED_URL:email=npm requires email to be set but doesn't use the value\n
 fi
 
 echo -e $FEEDS_STRING >> ~/.npmrc
+
+
+
+
 
 cd $CODESPACE_DEFAULT_PATH
 

@@ -1,28 +1,32 @@
-FROM mcr.microsoft.com/vscode/devcontainers/universal:linux
+FROM debian:latest
 
 # Install .NET Core SDK
-ENV DOTNET_SDK_DOWNLOAD_URL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/3.1.402/dotnet-sdk-3.1.402-linux-x64.tar.gz
-
-RUN sudo curl -SL $DOTNET_SDK_DOWNLOAD_URL --output dotnet.tar.gz \
-    && sudo tar -zxf dotnet.tar.gz -C /home/codespace/.dotnet \
-    && sudo rm dotnet.tar.gz
-    
-# Enable detection of running in a container
-ENV DOTNET_RUNNING_IN_CONTAINER=true \
+ENV DOTNET_SDK_DOWNLOAD_URL=https://dotnetcli.blob.core.windows.net/dotnet/Sdk/3.1.404/dotnet-sdk-3.1.404-linux-x64.tar.gz \
+    ## Enable detection of running in a container
+    DOTNET_RUNNING_IN_CONTAINER=true \
     # Enable correct mode for dotnet watch (only mode supported in a container)
     DOTNET_USE_POLLING_FILE_WATCHER=true \
     # Skip extraction of XML docs - generally not useful within an image/container - helps perfomance
-    NUGET_XMLDOC_MODE=skip
+    NUGET_XMLDOC_MODE=skip \
+    ## Workaround for https://github.com/Microsoft/DockerTools/issues/87. This instructs NuGet to use 4.5 behavior in which
+    # all errors when attempting to restore a project are ignored and treated as warnings instead. This allows the VS
+    # tooling to use -nowarn:MSB3202 to ignore issues with the .dcproj project
+    RestoreUseSkipNonexistentTargets=false
 
-# Trigger the population of the local package cache
-RUN sudo mkdir warmup \
-    && cd warmup \
-    && sudo dotnet new \
-    && cd .. \
-    && sudo rm -rf warmup \
-    && sudo rm -rf /tmp/NuGetScratch
-
-# Workaround for https://github.com/Microsoft/DockerTools/issues/87. This instructs NuGet to use 4.5 behavior in which
-# all errors when attempting to restore a project are ignored and treated as warnings instead. This allows the VS
-# tooling to use -nowarn:MSB3202 to ignore issues with the .dcproj project
-ENV RestoreUseSkipNonexistentTargets false
+RUN apt-get update \
+    && apt-get install -y curl software-properties-common \
+    # nodejs + tools
+    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get install -y gcc g++ make \
+    # yarn
+    && apt-get remove cmdtest \
+    && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+    && apt-get update \
+    && apt-get install -y yarn \
+    # dotnet
+    && curl -SL $DOTNET_SDK_DOWNLOAD_URL --output dotnet.tar.gz \
+    && mkdir -p /usr/local/bin \
+    && tar -zxf dotnet.tar.gz -C /usr/local/bin --skip-old-files \
+    && rm dotnet.tar.gz
