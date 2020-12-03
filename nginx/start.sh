@@ -2,7 +2,7 @@
 
 CONTAINER_NAME=codespaces-nginx
 
-mkdir ./ssl
+mkdir ./ssl 2> /dev/null;
 
 echo -e "\n* Installing the root CA..\n"
 
@@ -11,7 +11,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     mkcertBin=./bin/mkcert-darwin
 fi
 
-sudo $mkcertBin -install
+$mkcertBin -install
 
 echo -e "\n* Creating certs..\n"
 
