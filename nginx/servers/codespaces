@@ -10,7 +10,7 @@ server {
   listen [::]:443 ssl;
 
   root ./;
-  server_name online.dev.core.vsengsaas.visualstudio.com;
+  server_name codespaces.github.localhost ~^(www\.)?codespace\-[\w-]+\.github\.localhost$;
 
   ssl_certificate ./ssl/cert.pem;
   ssl_certificate_key ./ssl/key.pem;
