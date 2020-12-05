@@ -20,7 +20,7 @@ Build and debug the GitHub Codespaces extension in GitHub Codespaces
 That's it, you're ready to start creating Codespaces! :rocket:
 
 ### Create a Codespace
-1. Ensure you are on the `codespaces-extension` branch at https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-extension
+1. Ensure you are on the `codespaces-extension` branch of the repo page at https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-extension. If you are using a fork, start from your fork's repo page, not the `vsls-contrib/vscs-in-codespaces` repo.
 1. Click Code > Open with Codespaces
 ![image](https://user-images.githubusercontent.com/746020/101094979-16ccda80-3572-11eb-874b-c971014203af.png)
 1. The codespace will load and automatically clone the ADO repo with the extension source code, and then run `yarn` and build the extension
