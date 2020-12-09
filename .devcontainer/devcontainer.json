@@ -4,7 +4,9 @@
 	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
-	"extensions": [],
+	"extensions": [
+		"ms-dotnettools.csharp"
+	],
 	"remoteEnv": {
 		"ADO_REPO_URL": "https://devdiv.visualstudio.com/DefaultCollection/OnlineServices/_git/vsclk-core"
 	},
