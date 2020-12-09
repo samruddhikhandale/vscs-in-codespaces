@@ -5,7 +5,6 @@ ENV DOTNET_SDK_DOWNLOAD_URL=https://dotnetcli.blob.core.windows.net/dotnet/Sdk/3
 
 RUN sudo curl -SL $DOTNET_SDK_DOWNLOAD_URL --output dotnet.tar.gz \
     && sudo tar -zxf dotnet.tar.gz -C /home/codespace/.dotnet --skip-old-files \
-    && sudo rm dotnet.tar.gz
     
 # Enable detection of running in a container
 ENV DOTNET_RUNNING_IN_CONTAINER=true \
