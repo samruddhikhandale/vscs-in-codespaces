@@ -5,6 +5,9 @@
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
 	"extensions": [],
+	"remoteEnv": {
+		"ADO_REPO_URL": "https://devdiv.visualstudio.com/DevDiv/_git/vsclk-core"
+	},
 	/*
 	 * Please don't change! create your own `post-create-command.sh`
 	 * file in this folder instead, it will be called automatically
