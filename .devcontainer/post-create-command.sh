@@ -5,11 +5,6 @@
 cd $CODESPACE_ROOT/vscode
 yarn install
 
-# Instsll dotnet SDK
-curl -SL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/3.1.404/dotnet-sdk-3.1.404-linux-x64.tar.gz --output dotnet.tar.gz \
-tar -zxf dotnet.tar.gz -C /home/codespace/.dotnet --skip-old-files \
-rm dotnet.tar.gz
-
 # restore the solution in the root
 cd $CODESPACE_ROOT
 dotnet restore
