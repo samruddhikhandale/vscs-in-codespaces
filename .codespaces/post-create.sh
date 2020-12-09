@@ -1,7 +1,8 @@
-sudo curl -SL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/3.1.404/dotnet-sdk-3.1.404-linux-x64.tar.gz --output dotnet.tar.gz
-sudo tar -zxf dotnet.tar.gz -C /home/codespace/.dotnet
-sudo tar -zxf dotnet.tar.gz -C /home/codespace/.dotnet --skip-old-files
-sudo rm dotnet.tar.gz
+# install dotnet sdk
+curl -SL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/3.1.404/dotnet-sdk-3.1.404-linux-x64.tar.gz --output dotnet.tar.gz
+tar -zxf dotnet.tar.gz -C /home/codespace/.dotnet
+tar -zxf dotnet.tar.gz -C /home/codespace/.dotnet --skip-old-files
+rm dotnet.tar.gz
 
 # add oh-my-bash
 wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O - | sh -C
