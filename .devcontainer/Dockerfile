@@ -8,6 +8,7 @@ ENV DOTNET_SDK_DOWNLOAD_URL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/3
 RUN sudo curl -SL $DOTNET_SDK_DOWNLOAD_URL --output dotnet.tar.gz \
     && sudo tar -zxf dotnet.tar.gz -C /home/codespace/.dotnet --skip-old-files \
     && sudo rm dotnet.tar.gz \
+    && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
     && echo "deb http://security.debian.org/debian-security jessie/updates main" | sudo tee -a /etc/apt/sources.list \
     && sudo apt-get update -y \
     && sudo apt-get install -y --no-install-recommends libssl1.0.0
