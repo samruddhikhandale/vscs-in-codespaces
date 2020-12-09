@@ -1,12 +1,11 @@
 # install dotnet sdk
 curl -SL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/3.1.404/dotnet-sdk-3.1.404-linux-x64.tar.gz --output dotnet.tar.gz
-tar -zxf dotnet.tar.gz -C /home/codespace/.dotnet
 tar -zxf dotnet.tar.gz -C /home/codespace/.dotnet --skip-old-files
 rm dotnet.tar.gz
 
 echo "deb http://security.debian.org/debian-security jessie/updates main" | sudo tee -a /etc/apt/sources.list
-apt-get update -y
-apt-get install -y --no-install-recommends libssl1.0.0
+sudo apt-get update -y
+sudo apt-get install -y --no-install-recommends libssl1.0.0
 
 # add oh-my-bash
 wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O - | sh -C
@@ -115,3 +114,7 @@ fi
 if [ -n "$ADO_PAT" ]; then
   ./init
 fi
+
+# temporary until we merge Codespaces.sln into master
+git fetch origin dev/janraj/dogfood/intellisense:dev/janraj/dogfood/intellisense
+git checkout dev/janraj/dogfood/intellisense
