@@ -7,7 +7,11 @@ ENV DOTNET_SDK_DOWNLOAD_URL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/3
 
 RUN sudo curl -SL $DOTNET_SDK_DOWNLOAD_URL --output dotnet.tar.gz \
     && sudo tar -zxf dotnet.tar.gz -C /home/codespace/.dotnet --skip-old-files \
-    && sudo rm dotnet.tar.gz
+    && sudo rm dotnet.tar.gz \
+    && curl -sL echo http://security.debian.org/debian-security/dists/jessie/updates/Release.gpg | apt-key add - \
+    && echo "deb http://security.debian.org/debian-security jessie/updates main" | sudo tee -a /etc/apt/sources.list \
+    && apt-get update -y \
+    && apt-get install -y --no-install-recommends libssl1.0.0
     
 # Enable detection of running in a container
 ENV DOTNET_RUNNING_IN_CONTAINER=true \
