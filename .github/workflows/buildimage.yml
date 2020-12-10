@@ -31,10 +31,6 @@ jobs:
         # uses: docker/build-push-action@ab83648e2e224cfeeab899e23b639660765c3a89
         uses: docker/build-push-action@v1.1.1
         with:
-          # Username used to log in to a Docker registry. If not set then no login will occur
-          username: srivatsn # optional
-          # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
-          password: ${{ secrets.GHCR_PAT }} # optional
           # Server address of Docker registry. If not set then will default to Docker Hub
           registry: ghcr.io # optional
           # Automatically tags the built image with the branch name
