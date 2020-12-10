@@ -5,6 +5,7 @@
 - Portal: https://github.com/vsls-contrib/vscs-in-codespaces/tree/portal
 - Codespaces extension: https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-extension
 - LiveShare extension: https://github.com/vsls-contrib/vscs-in-codespaces/tree/liveshare-extension
+- vsclk-core: https://github.com/vsls-contrib/vscs-in-codespaces/tree/vsclk-core
 
 **Issues/Feedback**
 
