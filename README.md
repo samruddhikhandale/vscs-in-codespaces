@@ -22,7 +22,7 @@ That's it, you're ready to start creating Codespaces! :rocket:
 ### Create a Codespace
 1. Ensure you are on the `vsclk-core` branch of the repo page at https://github.com/vsls-contrib/vscs-in-codespaces/tree/vsclk-core. If you are using a fork, start from your fork's repo page, not the `vsls-contrib/vscs-in-codespaces` repo.
 1. Click Code > Open with Codespaces
-![image](https://user-images.githubusercontent.com/746020/101094979-16ccda80-3572-11eb-874b-c971014203af.png)
+![image](https://user-images.githubusercontent.com/33612256/101836197-cb767700-3af1-11eb-9a61-ce64a2f7ea0e.png)
 1. The codespace will load and automatically clone the vsclk-core ADO repo.
 1. Wait for the configuration to complete. You can track this in the `Creation Log`, such as by running the `Codespaces: View Creation Log` and viewing `Configure Codespace`.
 ![image](https://user-images.githubusercontent.com/746020/101095940-99a26500-3573-11eb-8bf1-1ae14d2d8dd1.png)
