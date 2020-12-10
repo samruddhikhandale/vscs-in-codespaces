@@ -115,7 +115,3 @@ fi
 if [ -n "$ADO_PAT" ]; then
   ./init
 fi
-
-# temporary until we merge Codespaces.sln into master
-git fetch origin dev/janraj/dogfood/intellisense:dev/janraj/dogfood/intellisense
-git checkout dev/janraj/dogfood/intellisense
