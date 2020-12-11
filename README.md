@@ -6,6 +6,7 @@
 - Codespaces extension: https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-extension
 - LiveShare extension: https://github.com/vsls-contrib/vscs-in-codespaces/tree/liveshare-extension
 - vsclk-core: https://github.com/vsls-contrib/vscs-in-codespaces/tree/vsclk-core
+- Agent/CLI Development in Cascade: https://github.com/vsls-contrib/vscs-in-codespaces/tree/cascade-agent-cli (⚠ Work in Progress)
 
 **Issues/Feedback**
 
