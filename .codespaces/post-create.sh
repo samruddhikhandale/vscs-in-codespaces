@@ -115,3 +115,6 @@ fi
 if [ -n "$ADO_PAT" ]; then
   ./init
 fi
+
+mkdir ~/CEDev
+dotnet restore
