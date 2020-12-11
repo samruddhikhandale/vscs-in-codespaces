@@ -117,5 +117,3 @@ if [ -n "$ADO_PAT" ]; then
 fi
 
 mkdir ~/CEDev
-cd ~/workspace/vscs-in-codespaces
-dotnet restore
