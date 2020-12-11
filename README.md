@@ -1,6 +1,4 @@
-# GitHub Codespaces extension in Codespaces
-
-Build and debug the GitHub Codespaces extension in GitHub Codespaces
+# vsclk-core in Codespaces
 
 ## Getting Started
 
