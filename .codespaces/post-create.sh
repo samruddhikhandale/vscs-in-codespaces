@@ -1,5 +1,7 @@
 # add libssl
 echo "deb http://security.debian.org/debian-security jessie/updates main" | sudo tee -a /etc/apt/sources.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 9D6D8F6BC857C906
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AA8E81B4331F7F50
 sudo apt-get update -y
 sudo apt-get install -y --no-install-recommends libssl1.0.0
 
