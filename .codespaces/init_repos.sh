@@ -3,10 +3,10 @@
 # clear
 echo "init-repos running.."
 
-cp -Ru . ~/ado-in-codespaces
+# cp -Ru . ~/ado-in-codespaces
+# CACHE_FILE_PATH=~/.ado-in-codespaces-cache
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-CACHE_FILE_PATH=~/.ado-in-codespaces-cache
 
 if [ -f $CACHE_FILE_PATH ]; then
     source $CACHE_FILE_PATH
@@ -117,7 +117,7 @@ export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
 ### Init each repo...
 
 # VSclk
-./.codespaces/setup-vsclk.sh
+./.codespaces/setup-vsclk.sh "force"
 
 # Cascade
-./.codespaces/setup-cascade.sh
+./.codespaces/setup-cascade.sh "force"

@@ -1,6 +1,11 @@
 #!/bin/bash
 
-echo "Setup vsclk..."
+if [ "$#" -ne 1 ]; then
+    echo -e $PALETTE_RED"\n Do not run ./setup-vsclk.sh directly. Run script from ./init_repos.sh \n"$PALETTE_RESET
+    exit 1
+fi
+
+echo -e $PALETTE_LIGHT_YELLOW"\n ⌬ Fetching the VSCLK repo\n"$PALETTE_RESET
 mkdir vsclk-core
 pushd ./vsclk-core
 export "VSCLK_ROOT=${pwd}"
@@ -8,10 +13,9 @@ export "VSCLK_ROOT=${pwd}"
 EMPTY_STRING=""
 CLEAN_ORIGIN="${VSCLK_REPO_URL/https\:\/\//$EMPTY_STRING}"
 
-echo -e $PALETTE_LIGHT_YELLOW"\n ⌬ Fetching the VSCLK repo\n"$PALETTE_RESET
 
 # clone the vsclk repo
-git clone https://PAT:$ADO_PAT@$CLEAN_ORIGIN
+git clone https://PAT:$ADO_PAT@$CLEAN_ORIGIN .
 
 # replace env variable reference in the .npmrc
 sed -i -E "s/_password=.+$/_password=$ADO_PAT_BASE64/g" ~/.npmrc
@@ -137,6 +141,6 @@ fi
 popd
 popd
 
-echo "vsclk setup complete."
+echo -e $PALETTE_GREEN"\n ⌬ VSCLK Setup Complete.\n"$PALETTE_RESET
 
 # exec bash

@@ -124,3 +124,4 @@ if [ -n "$ADO_PAT" ]; then
   source .codespaces/init_repos.sh
 fi
 
+echo "post-create complete."
