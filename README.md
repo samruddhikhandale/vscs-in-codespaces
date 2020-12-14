@@ -1,8 +1,5 @@
 # vsclk-core in Codespaces
-
-## Getting Started
-
-### One-time setup
+## One-time setup
 1. If you do not have write-access to the `vsls-contrib/vscs-in-codespaces` repo, go ahead and fork it now
 1. Go to https://dev.azure.com/devdiv/_usersSettings/tokens and generate a Personal Access Token that will be used to clone the repo where the Codespaces extension lives
 1. Click `New Token` and select the following settings:
@@ -17,7 +14,7 @@
     
 That's it, you're ready to start creating Codespaces! :rocket:
 
-### Create a Codespace
+## Create a Codespace
 1. Ensure you are on the `vsclk-core` branch of the repo page at https://github.com/vsls-contrib/vscs-in-codespaces/tree/vsclk-core. If you are using a fork, start from your fork's repo page, not the `vsls-contrib/vscs-in-codespaces` repo.
 1. Click Code > Open with Codespaces
 ![image](https://user-images.githubusercontent.com/33612256/101836197-cb767700-3af1-11eb-9a61-ce64a2f7ea0e.png)
@@ -29,7 +26,7 @@ That's it, you're ready to start creating Codespaces! :rocket:
 ![image](https://user-images.githubusercontent.com/33612256/101835693-01672b80-3af1-11eb-97d7-a5bda056f9d3.png)
 1. Begin coding with Intellisense!
 
-### Running the Frontend and Backend Services
+## Running the Frontend and Backend Services
 1. A CEDev directory will have been generated automatically for your appsettings.json. Run the following commands in the VS Code terminal
 ```
 cd ~/CEDev
