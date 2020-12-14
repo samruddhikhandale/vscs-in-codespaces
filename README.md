@@ -31,7 +31,9 @@ That's it, you're ready to start creating Codespaces! :rocket:
 cd ~/CEDev
 code appsettings.json
 ```
-and paste in your appsettings.json. Make sure you've added the `"developerAlias": "<alias>"` property to appsettings.json with your alias. Running the services in a Codespace will try to create resources with the `codespace` username, causing an error.
+and paste in your appsettings.json. Make sure you've added the `"developerAlias": "<alias>"` property to appsettings.json with your alias. Without this, running the services in a Codespace will try to create resources with the `codespace` username, causing an error.
+
+![image](https://user-images.githubusercontent.com/33612256/102140759-bf5e2280-3e2d-11eb-8290-b8ee45e9844f.png)
 
 2. Open the vscs-services.code-workspace workspace.
 ![image](https://user-images.githubusercontent.com/33612256/102133534-3e9a2900-3e23-11eb-9cfa-31bf294b78e8.png)
