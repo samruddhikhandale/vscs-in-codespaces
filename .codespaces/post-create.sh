@@ -115,7 +115,7 @@ fi
 
 # Run the init script if ADO_PAT is already defined via secrets
 if [ -n "$ADO_PAT" ]; then
-  source .codespaces/init_repos.sh
+  source ~/workspace/vscs-in-codespaces/.codespaces/init_repos.sh
 fi
 
 mkdir ~/CEDev
