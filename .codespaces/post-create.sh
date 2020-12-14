@@ -1,3 +1,5 @@
+echo "post-create running.."
+
 # add libssl
 echo "deb http://security.debian.org/debian-security jessie/updates main" | sudo tee -a /etc/apt/sources.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 9D6D8F6BC857C906
@@ -113,9 +115,12 @@ fi
 
 " >> $BASH_RC_FILE
 
-# Run the init script if ADO_PAT is already defined via secrets
-if [ -n "$ADO_PAT" ]; then
-  source ~/workspace/vscs-in-codespaces/.codespaces/init_repos.sh
-fi
+git config --global pull.rebase false
 
 mkdir ~/CEDev
+
+# Run the init script if ADO_PAT is already defined via GH secrets
+if [ -n "$ADO_PAT" ]; then
+  source .codespaces/init_repos.sh
+fi
+

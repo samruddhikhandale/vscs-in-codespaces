@@ -1,40 +1,28 @@
 #!/bin/bash
 
 echo "Setup vsclk..."
+mkdir vsclk-core
+pushd ./vsclk-core
+export "VSCLK_ROOT=${pwd}"
 
 EMPTY_STRING=""
-CLEAN_ADO_ORIGIN="${VSCLK_REPO_URL/https\:\/\//$EMPTY_STRING}"
+CLEAN_ORIGIN="${VSCLK_REPO_URL/https\:\/\//$EMPTY_STRING}"
 
-git remote remove github-origin &>/dev/null
-git remote rename origin github-origin &>/dev/null
+echo -e $PALETTE_LIGHT_YELLOW"\n ⌬ Fetching the VSCLK repo\n"$PALETTE_RESET
 
-#git remote remove origin
-git remote add origin https://PAT:$ADO_PAT@$CLEAN_ADO_ORIGIN
+# clone the vsclk repo
+git clone https://PAT:$ADO_PAT@$CLEAN_ORIGIN
 
-GIT_DEFAULT_BRANCH_NAME=$(git remote show origin | grep "HEAD branch\: " | sed 's/HEAD branch\: //g' | xargs)
-
-echo -e $PALETTE_LIGHT_YELLOW"\n ⌬ Fetching the repo\n"$PALETTE_RESET
-
-git reset --hard
-git checkout main
-
-git branch --track github-main
-
-# clone the ADO repo
-git pull origin $GIT_DEFAULT_BRANCH_NAME:$GIT_DEFAULT_BRANCH_NAME --force --no-tags
-
-git checkout $GIT_DEFAULT_BRANCH_NAME &>/dev/null
-
-export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
 # replace env variable reference in the .npmrc
 sed -i -E "s/_password=.+$/_password=$ADO_PAT_BASE64/g" ~/.npmrc
 # write the token to the env file
 echo -e "export ADO_PAT=$ADO_PAT" >> ~/.cs-environment
 
-if [ ! -d $CODESPACE_DEFAULT_PATH ]; then
-    echo -e $PALETTE_RED"\n ❗ Cannot find the \`$CODESPACE_DEFAULT_PATH\` path, failed clone the repo or the \$ADO_REPO_DEFAULT_PATH not correct?\n"$PALETTE_RESET
-    exit 1
-fi
+
+# if [ ! -d $CODESPACE_DEFAULT_PATH ]; then
+#     echo -e $PALETTE_RED"\n ❗ Cannot find the \`$CODESPACE_DEFAULT_PATH\` path, failed clone the repo or the \$ADO_REPO_DEFAULT_PATH not correct?\n"$PALETTE_RESET
+#     exit 1
+# fi
 
 mkdir -p ~/.nuget/NuGet/
 
@@ -45,9 +33,9 @@ if ! [ -z $NUGET_CONFIG_FILE_PATH ] 2> /dev/null && [ -f $NUGET_CONFIG_FILE_PATH
 then
     NUGET_FILE_PATH=$NUGET_CONFIG_FILE_PATH
 # 2. check the repo root next
-elif [ -f $CODESPACE_ROOT/NuGet.config ]
+elif [ -f $VSCLK_ROOT/NuGet.config ]
 then
-    NUGET_FILE_PATH=$CODESPACE_ROOT/NuGet.config
+    NUGET_FILE_PATH=$VSCLK_ROOT/NuGet.config
 # 3. check the default workspace folder next
 elif [ -f $CODESPACE_DEFAULT_PATH/NuGet.config ]
 then
@@ -100,9 +88,9 @@ if ! [ -z $NPMRC_CONFIG_FILE_PATH ] 2> /dev/null && [ -f $NPMRC_CONFIG_FILE_PATH
 then
     NPMRC_FILE_PATH=$NPMRC_CONFIG_FILE_PATH
 # 2. check the repo root next
-elif [ -f $CODESPACE_ROOT/.npmrc ]
+elif [ -f $VSCLK_ROOT/.npmrc ]
 then
-    NPMRC_FILE_PATH=$CODESPACE_ROOT/.npmrc
+    NPMRC_FILE_PATH=$VSCLK_ROOT/.npmrc
 # 3. check the default workspace folder next
 elif [ -f $CODESPACE_DEFAULT_PATH/.npmrc ]
 then
@@ -135,7 +123,7 @@ fi
 
 echo -e $FEEDS_STRING >> ~/.npmrc
 
-cd $CODESPACE_DEFAULT_PATH
+pushd $CODESPACE_DEFAULT_PATH
 
 USER_POST_CREATE_COMMAND_FILE=~/ado-in-codespaces/.devcontainer/post-create-command.sh
 if [ -f $USER_POST_CREATE_COMMAND_FILE ]; then
@@ -146,4 +134,9 @@ if [ -f $USER_POST_CREATE_COMMAND_FILE ]; then
     . $USER_POST_CREATE_COMMAND_FILE
 fi
 
-exec bash
+popd
+popd
+
+echo "vsclk setup complete."
+
+# exec bash

@@ -8,6 +8,7 @@
 	"extensions": [
 		"ms-dotnettools.csharp"
 	],
+	"dockerFile" : "Dockerfile",
 	"containerEnv": {
         "VSCLK_REPO_URL": "https://devdiv.visualstudio.com/DefaultCollection/OnlineServices/_git/vsclk-core",
         "CASCADE_REPO_URL": "https://devdiv.visualstudio.com/DefaultCollection/DevDiv/_git/Cascade"

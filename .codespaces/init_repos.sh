@@ -1,6 +1,7 @@
 #!/bin/bash
 
-clear
+# clear
+echo "init-repos running.."
 
 cp -Ru . ~/ado-in-codespaces
 
@@ -55,38 +56,13 @@ if [ -z "$NONINTERACTIVE" ]; then
 fi
 
 if [ -z "$VSCLK_REPO_URL" ]; then
+    echo -e $PALETTE_RED"  🧱 VSCLK_REPO_URL is not defined. Exiting.."$PALETTE_RESET
+    exit 1
+fi
 
-    unset VSCLK_REPO_URL_SUFFIX;
-    if [ -z "$VSCLK_REPO_URL" ]; then
-        VSCLK_REPO_URL_SUFFIX=""
-    else
-        VSCLK_REPO_URL_SUFFIX=$PALETTE_CYAN"(➥ to reuse *$VSCLK_REPO_URL*)"$PALETTE_RESET
-    fi
-
-    echo -e $PALETTE_CYAN"\n- Please provide your ADO repo URL\n"$PALETTE_RESET
-
-    printf " ↳ ADO repo URL$VSCLK_REPO_URL_SUFFIX: $PALETTE_PURPLE"
-
-    read VSCLK_REPO_URL_INPUT
-
-    echo -e " $PALETTE_RESET"
-
-    if [ -z "$VSCLK_REPO_URL_INPUT" ]; then
-        if [ -z "$VSCLK_REPO_URL" ]; then
-            echo -e $PALETTE_RED"  🧱 No link - no {tbd}"$PALETTE_RESET
-            exit 1
-        else
-            VSCLK_REPO_URL_INPUT=$VSCLK_REPO_URL
-            echo -e $PALETTE_DIM"  * reusing *$VSCLK_REPO_URL_INPUT* as ADO repo URL.\n"$PALETTE_RESET
-        fi
-    fi
-
-    if [ "$VSCLK_REPO_URL" != "$VSCLK_REPO_URL_INPUT" ]; then
-        export VSCLK_REPO_URL=$VSCLK_REPO_URL_INPUT
-
-        echo "export VSCLK_REPO_URL=$VSCLK_REPO_URL" >> $CACHE_FILE_PATH
-    fi
-
+if [ -z "$CASCADE_REPO_URL" ]; then
+    echo -e $PALETTE_RED"  🧱 CASCADE_REPO_URL is not defined. Exiting.."$PALETTE_RESET
+    exit 1
 fi
 
 if [ -z "$ADO_PAT" ]; then
@@ -134,9 +110,14 @@ if [ -z "$ADO_PAT" ]; then
 
     export ADO_PAT=$ADO_PAT_INPUT
 
-    # VSclk
-    ./.codespaces/setup-vsclk.sh
-
-    # Cascade
-    ./.codespaces/setup-cascade.sh
 fi
+
+export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
+
+### Init each repo...
+
+# VSclk
+./.codespaces/setup-vsclk.sh
+
+# Cascade
+./.codespaces/setup-cascade.sh
