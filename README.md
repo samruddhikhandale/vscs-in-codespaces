@@ -29,6 +29,22 @@ That's it, you're ready to start creating Codespaces! :rocket:
 ![image](https://user-images.githubusercontent.com/33612256/101835693-01672b80-3af1-11eb-97d7-a5bda056f9d3.png)
 1. Begin coding with Intellisense!
 
+### Running the Frontend and Backend Services
+1. A CEDev directory will have been generated automatically for your appsettings.json. Run the following commands in the VS Code terminal
+```
+cd ~/CEDev
+code appsettings.json
+```
+and paste in your appsettings.json. Make sure you've added the `"developerAlias": "<alias>"` property to appsettings.json with your alias. Running the services in a Codespace will try to create resources with the `codespace` username, causing an error.
+
+2. Open the vscs-services.code-workspace workspace.
+![image](https://user-images.githubusercontent.com/33612256/102133534-3e9a2900-3e23-11eb-9cfa-31bf294b78e8.png)
+
+3. Open the Run tab.
+
+4. Select and run Launch FrontEnd + Backend Web APIs (Workspace), or you can run the (No Build) option if you've already built.
+![image](https://user-images.githubusercontent.com/33612256/102133636-67bab980-3e23-11eb-846d-831e2496c0ad.png)
+
 ## Issues/Feedback
 
 Feedback appreciated, create issues on this repo if you have any questions or run into issues 🤗
