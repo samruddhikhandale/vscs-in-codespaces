@@ -105,3 +105,5 @@ fi
 if [ -n "$ADO_PAT" ]; then
   ./init
 fi
+
+dotnet restore
