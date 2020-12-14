@@ -12,6 +12,23 @@ Welcome to VSCS in Codespaces! Here you can open any ADO repository in a GitHub 
 
 ## Open Any ADO Repo In Codespaces
 
-**Issues/Feedback**
+### One-time setup
+1. If you do not have write-access to the `vsls-contrib/vscs-in-codespaces` repo, go ahead and fork it now
+1. Go to https://dev.azure.com/devdiv/_usersSettings/tokens and generate a Personal Access Token that will be used to clone the repo where the Codespaces extension lives
+1. Click `New Token` and select the following settings:
+    * `Organization: All accessible organizations`
+    * `Scope: Code Read & Write`
+    * `Scope: Packaging Read`
+1. Copy the token
+1. Go to https://github.com/settings/codespaces and click `New secret`
+    * Name: `ADO_PAT` _:warning: Warning: the name must be called `ADO_PAT` for the init scripts to work!_
+    * Value: Paste in the generated PAT
+    * Repository access: `vsls-contrib/vscs-in-codespaces` (or if you are using a fork, select your fork)
+    
+### Create a Codespace
+1. Click Code > Open with Codespaces
+1. In the VS Code terminal, run ./init and follow the instructions, pasting in the url to your ADO repo.
+
+## Issues/Feedback
 
 - Feedback appreciated, create issues on this repo if anything 🤗
