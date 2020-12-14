@@ -21,8 +21,7 @@ That's it, you're ready to start creating Codespaces! :rocket:
 1. The codespace will load and automatically clone the vsclk-core ADO repo. Wait for the configuration to complete. You can track this in the `Creation Log`, such as by running the `Codespaces: View Creation Log` and viewing `Configure Codespace`.
 ![image](https://user-images.githubusercontent.com/746020/101095940-99a26500-3573-11eb-8bf1-1ae14d2d8dd1.png)
 1. In the C# extension settings, ensure that Omnisharp: Project Load Timeout is > 200.
-1. Run `dotnet restore` in ~/workspace/vscs-in-codespaces (may take a few minutes)
-1. Run the command `Omnisharp: Select Project` and select Codespaces.sln. Wait until all projects are loaded in the Omnisharp logs.
+1. Run the command `Omnisharp: Select Project` and select Codespaces.sln. Wait until all projects are loaded in the Omnisharp logs. (If there is an error, you may need to run `dotnet restore` in the VS Code command line)
 ![image](https://user-images.githubusercontent.com/33612256/101835693-01672b80-3af1-11eb-97d7-a5bda056f9d3.png)
 1. Begin coding with Intellisense!
 
