@@ -4,33 +4,10 @@
 
 ## Getting Started
 
-### One-time setup
-1. If you do not have write-access to the `vsls-contrib/vscs-in-codespaces` repo, go ahead and fork it now
-1. Go to https://dev.azure.com/devdiv/_usersSettings/tokens and generate a Personal Access Token that will be used to clone the repo where the Codespaces extension lives
-1. Click `New Token` and select the following settings:
-    * `Organization: All accessible organizations`
-    * `Scope: Code Read & Write`
-    * `Scope: Packaging Read`
-1. Copy the token
-1. Go to https://github.com/settings/codespaces and click `New secret`
-    * Name: `ADO_PAT` _:warning: Warning: the name must be called `ADO_PAT` for the init scripts to work!_
-    * Value: Paste in the generated PAT
-    * Repository access: `vsls-contrib/vscs-in-codespaces` (or if you are using a fork, select your fork)
-    
-That's it, you're ready to start creating Codespaces! :rocket:
+### VSCLK Setup
 
-### Create a Codespace
-1. Ensure you are on the `vsclk-core` branch of the repo page at https://github.com/vsls-contrib/vscs-in-codespaces/tree/vsclk-core. If you are using a fork, start from your fork's repo page, not the `vsls-contrib/vscs-in-codespaces` repo.
-1. Click Code > Open with Codespaces
-![image](https://user-images.githubusercontent.com/33612256/101836197-cb767700-3af1-11eb-9a61-ce64a2f7ea0e.png)
-1. The codespace will load and automatically clone the vsclk-core ADO repo. Wait for the configuration to complete. You can track this in the `Creation Log`, such as by running the `Codespaces: View Creation Log` and viewing `Configure Codespace`.
-![image](https://user-images.githubusercontent.com/746020/101095940-99a26500-3573-11eb-8bf1-1ae14d2d8dd1.png)
-1. In the C# extension settings, ensure that Omnisharp: Project Load Timeout is > 200.
-1. Run `dotnet restore` in ~/workspace/vscs-in-codespaces (may take a few minutes)
-1. Run the command `Omnisharp: Select Project` and select Codespaces.sln. Wait until all projects are loaded in the Omnisharp logs.
-![image](https://user-images.githubusercontent.com/33612256/101835693-01672b80-3af1-11eb-97d7-a5bda056f9d3.png)
-1. Begin coding with Intellisense!
+Please follow the [README on the codespaces-service branch](https://github.com/vsls-contrib/vscs-in-codespaces/blob/codespaces-service/README.md) to complete the individual developer setup.
 
-## Issues/Feedback
+### Cacasde Setup
 
-Feedback appreciated, create issues on this repo if you have any questions or run into issues 🤗
+TBD
