@@ -4,7 +4,7 @@
 echo "init-repos running.."
 
 # cp -Ru . ~/ado-in-codespaces
-# CACHE_FILE_PATH=~/.ado-in-codespaces-cache
+export CACHE_FILE_PATH=~/.ado-in-codespaces-cache
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
@@ -114,6 +114,13 @@ fi
 
 export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
 
+# replace env variable reference in the .npmrc
+sed -i -E "s/_password=.+$/_password=$ADO_PAT_BASE64/g" ~/.npmrc
+
+# cache tokens to env file
+echo -e "export ADO_PAT=$ADO_PAT" >> ~/.cs-environment
+echo -e "export ADO_PAT_BASE64=$ADO_PAT_BASE64" >> ~/.cs-environment
+
 ### Init each repo...
 
 # VSclk
@@ -122,5 +129,5 @@ export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
 # Cascade
 ./.codespaces/setup-cascade.sh "force"
 
-echo -e $PALETTE_GREEN"\n ⚠ Please open agent-development.code-workspace and select OPEN WORKSPACE\n"$PALETTE_RESET
+echo -e $PALETTE_CYAN"\n ⚠ Please open agent-development.code-workspace and select OPEN WORKSPACE ⚠ \n"$PALETTE_RESET
 

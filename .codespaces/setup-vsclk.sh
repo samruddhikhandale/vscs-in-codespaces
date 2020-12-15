@@ -8,7 +8,9 @@ fi
 echo -e $PALETTE_LIGHT_YELLOW"\n ⌬ Fetching the VSCLK repo\n"$PALETTE_RESET
 mkdir vsclk-core
 pushd ./vsclk-core
-export "VSCLK_ROOT=${pwd}"
+export VSCLK_ROOT=`pwd`
+echo -e "export VSCLK_ROOT=$VSCLK_ROOT" >> ~/.cs-environment
+
 
 EMPTY_STRING=""
 CLEAN_ORIGIN="${VSCLK_REPO_URL/https\:\/\//$EMPTY_STRING}"
@@ -17,22 +19,11 @@ CLEAN_ORIGIN="${VSCLK_REPO_URL/https\:\/\//$EMPTY_STRING}"
 # clone the vsclk repo
 git clone https://PAT:$ADO_PAT@$CLEAN_ORIGIN .
 
-# replace env variable reference in the .npmrc
-sed -i -E "s/_password=.+$/_password=$ADO_PAT_BASE64/g" ~/.npmrc
-# write the token to the env file
-echo -e "export ADO_PAT=$ADO_PAT" >> ~/.cs-environment
-
-
-# if [ ! -d $CODESPACE_DEFAULT_PATH ]; then
-#     echo -e $PALETTE_RED"\n ❗ Cannot find the \`$CODESPACE_DEFAULT_PATH\` path, failed clone the repo or the \$ADO_REPO_DEFAULT_PATH not correct?\n"$PALETTE_RESET
-#     exit 1
-# fi
-
 mkdir -p ~/.nuget/NuGet/
 
 # get the NuGet.Config file path
 unset NUGET_FILE_PATH
-# 1. check the NUGET_CONFIG_FILE_PATH variable set by the uer first
+# 1. check the NUGET_CONFIG_FILE_PATH variable set by the user first
 if ! [ -z $NUGET_CONFIG_FILE_PATH ] 2> /dev/null && [ -f $NUGET_CONFIG_FILE_PATH ];
 then
     NUGET_FILE_PATH=$NUGET_CONFIG_FILE_PATH
@@ -40,15 +31,19 @@ then
 elif [ -f $VSCLK_ROOT/NuGet.config ]
 then
     NUGET_FILE_PATH=$VSCLK_ROOT/NuGet.config
-# 3. check the default workspace folder next
-elif [ -f $CODESPACE_DEFAULT_PATH/NuGet.config ]
+# 3. check the user folder finally
+elif [ -f ~/.nuget/NuGet/NuGet.Config ]
 then
-  NUGET_FILE_PATH=$CODESPACE_DEFAULT_PATH/NuGet.config
+  NUGET_FILE_PATH=~/.nuget/NuGet/NuGet.Config
 fi
 
+if [[ -z "$VSCLK_ROOT" ]]; then
+  echo -e $PALETTE_RED"\n ERROR: VSCLK_ROOT env variable not set.\n"$PALETTE_RESET
+  exit -1
+fi
 
 if ! [ -z $NUGET_FILE_PATH ] 2> /dev/null && [ -f $NUGET_FILE_PATH ]; then
-  echo -e "Generating nuget config file.."
+  echo -e "!! Generating nuget config file.."
   NAMES=$(cat $NUGET_FILE_PATH | sed -n 's/<add.*key="\([^"]*\).*/\1/p')
   names_array=($NAMES)
 
@@ -85,6 +80,11 @@ if ! [ -z $NUGET_FILE_PATH ] 2> /dev/null && [ -f $NUGET_FILE_PATH ]; then
   " > ~/.nuget/NuGet/NuGet.Config
 fi
 
+if [[ -z "$ADO_PAT_BASE64" ]]; then
+  echo -e $PALETTE_RED"\n ERROR: ADO_PAT_BASE64 env variable not set.\n"$PALETTE_RESET
+  exit -1
+fi
+
 # get the .npmrc file path
 unset NPMRC_FILE_PATH
 # 1. check the NPMRC_CONFIG_FILE_PATH variable set by the uer first
@@ -95,10 +95,6 @@ then
 elif [ -f $VSCLK_ROOT/.npmrc ]
 then
     NPMRC_FILE_PATH=$VSCLK_ROOT/.npmrc
-# 3. check the default workspace folder next
-elif [ -f $CODESPACE_DEFAULT_PATH/.npmrc ]
-then
-  NPMRC_FILE_PATH=$CODESPACE_DEFAULT_PATH/.npmrc
 fi
 
 if ! [ -z $NPMRC_FILE_PATH ] 2> /dev/null && [ -f $NPMRC_FILE_PATH ]; then
@@ -127,18 +123,9 @@ fi
 
 echo -e $FEEDS_STRING >> ~/.npmrc
 
-pushd $CODESPACE_DEFAULT_PATH
+echo -e $PALETTE_BLUE"\n ⌬ Restoring VSCLK Packages\n"$PALETTE_RESET
+dotnet restore
 
-USER_POST_CREATE_COMMAND_FILE=~/ado-in-codespaces/.devcontainer/post-create-command.sh
-if [ -f $USER_POST_CREATE_COMMAND_FILE ]; then
-    echo -e $PALETTE_CYAN"\n Executing the post create command..\n"$PALETTE_RESET
-
-    source ~/.cs-environment
-
-    . $USER_POST_CREATE_COMMAND_FILE
-fi
-
-popd
 popd
 
 echo -e $PALETTE_GREEN"\n ⌬ VSCLK Setup Complete.\n"$PALETTE_RESET

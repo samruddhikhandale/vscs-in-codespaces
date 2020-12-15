@@ -69,9 +69,7 @@ export PALETTE_RESET='\e[0m'
 
 # workspace
 export CODESPACE_ROOT=$(pwd)
-export CODESPACE_DEFAULT_PATH="\$CODESPACE_ROOT\$ADO_REPO_DEFAULT_PATH"
 alias cdroot='cd \$CODESPACE_ROOT'
-alias cddefault='cd \$CODESPACE_DEFAULT_PATH'
 alias ya='yarn'
 # misc
 code()
@@ -89,28 +87,9 @@ alias refresh='exec bash'
 alias bashconfig=\"code $BASH_RC_FILE\"
 alias nugetconfig=\"code ~/.nuget/NuGet/NuGet.Config\"
 alias ports='lsof -n -i -P | grep TCP'
-# git
-alias push='git push -u azdo HEAD'
-alias pull='git pull azdo'
-alias sync='pull && push'
-alias fetch='git fetch azdo'
-alias pullmaster='git pull azdo master'
-alias branch='f() {
-    BRANCH_NAME=\"dev/\$AZ_DO_USERNAME/\$1\";
-    git pull azdo master:main --no-tags;
-    git branch \$BRANCH_NAME main --color;
-    git checkout \$BRANCH_NAME;
-    git push -u azdo \$BRANCH_NAME;
-};f'
 
-# change dir to the repo default folder if present (codespace is initialized),
-# otherwise show the hint
-if ! [ -z \$CODESPACE_DEFAULT_PATH ] 2> /dev/null && [ -d \$CODESPACE_DEFAULT_PATH ]; then
-  cd \$CODESPACE_DEFAULT_PATH
-elif [ \$(basename \"\$0\") != 'init' ]
-then
-  clear
-  echo -e \"\$PALETTE_DIM\n💡  Run\$PALETTE_BLUE ./init\$PALETTE_RESET\$PALETTE_DIM when ready.\n\$PALETTE_RESET\"
+if [ -f ~/.cs-environment ]; then
+    source ~/.cs-environment
 fi
 
 " >> $BASH_RC_FILE
