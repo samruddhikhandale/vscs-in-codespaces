@@ -1,0 +1,12 @@
+{
+    "folders": [
+      {
+        "name": "Cascade",
+        "path": "./cascade"
+      },
+      {
+        "name": "VSCLK-Core",
+        "path": "./vsclk-core"
+      },
+    ]
+  }

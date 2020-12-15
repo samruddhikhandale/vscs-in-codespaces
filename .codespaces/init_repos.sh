@@ -121,3 +121,6 @@ export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
 
 # Cascade
 ./.codespaces/setup-cascade.sh "force"
+
+echo -e $PALETTE_GREEN"\n ⚠ Please open agent-development.code-workspace and select OPEN WORKSPACE\n"$PALETTE_RESET
+
