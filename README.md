@@ -26,6 +26,7 @@ That's it, you're ready to start creating Codespaces! :rocket:
 1. Begin coding with Intellisense!
 
 ## Running the Frontend and Backend Services
+:warning: Warning: Launching Frontend + Backend services only works in desktop Codespaces (in the VS Code extension). The bug in web Codespaces is being tracked here [#1836](https://github.com/microsoft/vssaas-planning/issues/1836)
 1. A CEDev directory will have been generated automatically for your appsettings.json. Run the following commands in the VS Code terminal
 ```
 cd ~/CEDev
