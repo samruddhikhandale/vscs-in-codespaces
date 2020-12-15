@@ -46,6 +46,12 @@ and paste in your appsettings.json. Make sure you've added the `"developerAlias"
 4. Select and run Launch FrontEnd + Backend Web APIs (Workspace), or you can run the (No Build) option if you've already built.
 ![image](https://user-images.githubusercontent.com/33612256/102133636-67bab980-3e23-11eb-846d-831e2496c0ad.png)
 
+## Known Issues
+* The backend service may crash the first time running it in a new Codespace. Suspending and resuming the Codespaces seems to permanently resolve this, but we will continue to track the issue.
+![image](https://user-images.githubusercontent.com/33612256/102268767-b3d03180-3ee9-11eb-8d95-96f1860fcea7.png)
+
+* As mentioned above, launching Frontend + Backend services only works in desktop Codespaces (in the VS Code extension). The bug in web Codespaces is being tracked here [#1836](https://github.com/microsoft/vssaas-planning/issues/1836)
+
 ## Issues/Feedback
 
 Feedback appreciated, create issues on this repo if you have any questions or run into issues 🤗
