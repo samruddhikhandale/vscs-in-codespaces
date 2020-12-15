@@ -27,6 +27,8 @@ That's it, you're ready to start creating Codespaces! :rocket:
 
 ## Running the Frontend and Backend Services
 :warning: Warning: Launching Frontend + Backend services only works in desktop Codespaces (in the VS Code extension). The bug in web Codespaces is being tracked here [#1836](https://github.com/microsoft/vssaas-planning/issues/1836)
+
+:warning: Warning: Ngrok is not currently configured in this Codespace, so you should use your devstamp tunnel Azure Relay url instead, which you can set up using the instructions [here](https://github.com/microsoft/vssaas-planning/wiki/Integrated-Devstamp-Tunnel)
 1. A CEDev directory will have been generated automatically for your appsettings.json. Run the following commands in the VS Code terminal
 ```
 cd ~/CEDev
