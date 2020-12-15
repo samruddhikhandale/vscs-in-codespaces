@@ -98,9 +98,14 @@ git config --global pull.rebase false
 
 mkdir ~/CEDev
 
+
+# Show hint of how to proceed on first launch
+if [ ! -f ~/.cs-environment ]; then
+  clear
+  echo -e "💡 Open$PALETTE_BOLD agent-development.code-workspace$PALETTE_RESET and select$PALETTE_BOLD OPEN WORKSPACE$PALETTE_RESET once all repos are cloned.$PALETTE_RESET \n$PALETTE_RESET"
+fi
+
 # Run the init script if ADO_PAT is already defined via GH secrets
 if [ -n "$ADO_PAT" ]; then
   source .codespaces/init_repos.sh
 fi
-
-echo "post-create complete."

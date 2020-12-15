@@ -129,5 +129,5 @@ echo -e "export ADO_PAT_BASE64=$ADO_PAT_BASE64" >> ~/.cs-environment
 # Cascade
 ./.codespaces/setup-cascade.sh "force"
 
-echo -e $PALETTE_CYAN"\n ⚠ Please open agent-development.code-workspace and select OPEN WORKSPACE ⚠ \n"$PALETTE_RESET
+  echo -e "💡 $PALETTE_BOLD$PALETTE_GREEN Cloning finished!  \n$PALETTE_RESET    Open$PALETTE_BOLD agent-development.code-workspace$PALETTE_RESET and select$PALETTE_BOLD OPEN WORKSPACE$PALETTE_RESET.$PALETTE_RESET \n$PALETTE_RESET"
 
