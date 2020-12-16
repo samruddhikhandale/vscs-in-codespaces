@@ -28,7 +28,3 @@ Welcome to VSCS in Codespaces! Here you can open any ADO repository in a GitHub 
 ### Create a Codespace
 1. Click Code > Open with Codespaces
 1. In the VS Code terminal, run ./init and follow the instructions, pasting in the url to your ADO repo.
-
-## Issues/Feedback
-
-- Feedback appreciated, create issues on this repo if anything 🤗
