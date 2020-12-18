@@ -48,8 +48,10 @@ and paste in your appsettings.json. Make sure you've added the `"developerAlias"
 
 5. You can now use your devstamp as usual, setting the endpoint on your local .cloudenv-settings.json to your integrated dev tunnel URL, opening a new VS Code window, and creating Codespaces in your dev stamp on the old VS Codespaces extension.
 
-## Known Issues
-* The backend service may crash the first time running it in a new Codespace. Suspending and resuming the Codespace seems to permanently resolve this, but we will continue to track the issue.
+## Known Issues and Planned Improvements
+* The backend service may crash the first time running it in a new Codespace. Suspending and resuming the Codespace usually resolves this, but we will continue to track the issue here [#1888](https://github.com/microsoft/vssaas-planning/issues/1888)
 ![image](https://user-images.githubusercontent.com/33612256/102268767-b3d03180-3ee9-11eb-8d95-96f1860fcea7.png)
 
 * As mentioned above, launching Frontend + Backend services only works in desktop Codespaces (in the VS Code extension). The bug in web Codespaces is being tracked here [#1836](https://github.com/microsoft/vssaas-planning/issues/1836)
+
+* Automatically create an appsettings.json with default values, allowing users to pass in values like developerAlias as Codespace secrets [#1887](https://github.com/microsoft/vssaas-planning/issues/1887)
