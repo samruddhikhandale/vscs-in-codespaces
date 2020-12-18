@@ -55,3 +55,5 @@ and paste in your appsettings.json. Make sure you've added the `"developerAlias"
 * As mentioned above, launching Frontend + Backend services only works in desktop Codespaces (in the VS Code extension). The bug in web Codespaces is being tracked here [#1836](https://github.com/microsoft/vssaas-planning/issues/1836)
 
 * Automatically create an appsettings.json with default values, allowing users to pass in values like developerAlias as Codespace secrets [#1887](https://github.com/microsoft/vssaas-planning/issues/1887)
+
+* Though you are able to use git normally with vsclk-core in this Codespace, you will see branches from both vscs-in-codespaces (this GitHub repository) and vsclk-core. We will remove the vscs-in-codespaces branches so you'll only see the vsclk-core branches. [#1889](https://github.com/microsoft/vssaas-planning/issues/1889)
