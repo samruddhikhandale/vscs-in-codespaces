@@ -50,6 +50,7 @@ and paste in your appsettings.json. Make sure you've added the `"developerAlias"
 
 ## Known Issues and Planned Improvements
 * The backend service may crash the first time running it in a new Codespace. Suspending and resuming the Codespace usually resolves this, but we will continue to track the issue here [#1888](https://github.com/microsoft/vssaas-planning/issues/1888)
+
 ![image](https://user-images.githubusercontent.com/33612256/102268767-b3d03180-3ee9-11eb-8d95-96f1860fcea7.png)
 
 * As mentioned above, launching Frontend + Backend services only works in desktop Codespaces (in the VS Code extension). The bug in web Codespaces is being tracked here [#1836](https://github.com/microsoft/vssaas-planning/issues/1836)
