@@ -9,7 +9,7 @@ function check_err {
     fi
 }
 
-if [ $1 != "--no-build" ]; then
+if [[ $1 != "--no-build" ]]; then
     echo "🚀 Building your AGENT changes..."
     dotnet build $CASCADE_ROOT/src/VSOnline > /dev/null
     check_err "build agent"
@@ -34,9 +34,9 @@ echo $ARTIFACTS_ID
 echo "#####"
 
 echo "🚀 Uploading artifacts..."
-export UseSecretFromAppConfig=1
 pushd ~/CEDev
-dotnet $VSCLK_ROOT/bin/debug/VsoUtil/VsoUtil.dll preparedevcli -c $ARTIFACTS_PATH -v $ARTIFACTS_ID
+UseSecretFromAppConfig=1
+dotnet $VSCLK_ROOT/bin/debug/VsoUtil/VsoUtil.dll preparedevcli -c $ARTIFACTS_PATH -v $ARTIFACTS_ID --secret-from-app-config
 check_err "uploading artifacts"
 
 echo "🎊 All done!"
