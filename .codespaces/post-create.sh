@@ -92,6 +92,8 @@ if [ -f ~/.cs-environment ]; then
     source ~/.cs-environment
 fi
 
+export PATH=$PATH:~/workspace/vscs-in-codespaces/.codespaces
+
 " >> $BASH_RC_FILE
 
 git config --global pull.rebase false

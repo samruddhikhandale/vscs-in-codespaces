@@ -10,4 +10,16 @@ Please follow the [README on the codespaces-service branch](https://github.com/v
 
 ### Cacasde Setup
 
-TBD
+...
+
+...
+
+### Deploying a Custom Agent
+
+You can run the `deploy-custom-agent.sh` script (on your path, source [here](https://github.com/vsls-contrib/vscs-in-codespaces/blob/cascade-agent-cli/.codespaces/deploy-custom-agent.sh)) which will:
+    1. Build Cascade
+    2. Build Vsclk-Core
+    3. Generate the agent artifacts with Cacade's `DevTool.dll`
+    4. Upload to Azure to be used in your personal devstamp with vsclk-core's `VsoUtil.dll`.
+
+You may specify the `--no-build` flag to skip steps 1 and 2, although you'll need to have build at some point to have the `DevTool` and `VsoUtil` dlls present.
