@@ -120,6 +120,6 @@ fi
 
 mkdir ~/CEDev
 cp ~/ado-in-codespaces/.codespaces/appsettings.json ~/CEDev
-sed -i "s/\"developerAlias\": \"\"/\"developerAlias\": \"`git config user.name`\"" ~/CEDev/appsettings.json
+sed -i "s/\"developerAlias\": \"\"/\"developerAlias\": \"`git config user.name`\"/" ~/CEDev/appsettings.json
 
 dotnet restore
