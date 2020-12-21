@@ -123,11 +123,10 @@ echo -e "export ADO_PAT_BASE64=$ADO_PAT_BASE64" >> ~/.cs-environment
 
 ### Init each repo...
 
-# VSclk
-./.codespaces/setup-vsclk.sh "force"
-
 # Cascade
 ./.codespaces/setup-cascade.sh "force"
+# VSclk
+./.codespaces/setup-vsclk.sh "force"
 
   echo -e "💡 $PALETTE_BOLD$PALETTE_GREEN Cloning finished!  \n$PALETTE_RESET    Open$PALETTE_BOLD agent-development.code-workspace$PALETTE_RESET and select$PALETTE_BOLD OPEN WORKSPACE$PALETTE_RESET.$PALETTE_RESET \n$PALETTE_RESET"
 
