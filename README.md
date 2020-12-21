@@ -24,7 +24,8 @@ This will give you a clean workspace organized like:
     ├── ...
 ```
 
-Use each project's directory like you would normally. Git commands, etc will work as normal.
+Via the source control panel you can see changes you've made in Cascade, vsclk-core, or this bootstrap repo.  Make commits how you normally would for each platform.
+
 
 The `.codespaces` directory cloned from vscs-in-codespaces is not deleted, and can still be accessed via your terminal at `~/workspace/vscs-in-codespaces/.codespaces`.  The `.codespaces` directory is added to your `$PATH`, letting you run any scripts in that directory from any directory.
 
