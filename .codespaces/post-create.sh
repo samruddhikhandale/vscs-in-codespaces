@@ -119,5 +119,6 @@ if [ -n "$ADO_PAT" ]; then
 fi
 
 mkdir ~/CEDev
+cp ~/ado-in-codespaces/.codespaces/appsettings.json ~/CEDev
 
 dotnet restore
