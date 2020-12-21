@@ -10,12 +10,12 @@ function check_err {
 }
 
 if [[ $1 != "--no-build" ]]; then
+    pushd $CASCADE_ROOT
     echo "🚀 Building your AGENT changes..."
     dotnet build $CASCADE_ROOT/src/VSOnline > /tmp/cascade-build-log.txt
     check_err "build agent (log: /tmp/cascade-build-log.txt)"
 
     pushd $VSCLK_ROOT
-
     echo "🚀 Building your VSCLK-CORE changes..."
     dotnet build $VSCLK_ROOT  > /tmp/vsclk-build-log.txt
     check_err "build vsclk-core (log: /tmp/vsclk-build-log.txt)"
