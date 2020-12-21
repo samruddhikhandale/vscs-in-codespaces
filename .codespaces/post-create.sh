@@ -96,10 +96,24 @@ export PATH=$PATH:~/workspace/vscs-in-codespaces/.codespaces
 
 " >> $BASH_RC_FILE
 
+# Git Defaults
 git config --global pull.rebase false
 
+# Copy appsettings.json template to ~/CEDev where it's expected to be.
+# Pre-populate it with environment variables if they've been supplied.
 mkdir ~/CEDev
+cp /home/codespace/workspace/vscs-in-codespaces/.codespaces/appsettings.json ~/CEDev
+if [ -n "$DEVELOPER_ALIAS" ]; then
+  sed -i "s/\"developerAlias\": \"\"/\"developerAlias\": \"$DEVELOPER_ALIAS\"/" ~/CEDev/appsettings.json
+fi
 
+if [ -n "$TUNNEL_KEY" ]; then
+  sed -i "s/\"tunnelRelayPrimaryAuthKey\": \"\"/\"tunnelRelayPrimaryAuthKey\": \"$TUNNEL_KEY\"/" ~/CEDev/appsettings.json
+fi
+
+if [ -n "$APP_SECRET" ]; then
+  sed -i "s|\"appServicePrincipalClientSecret\": \"\"|\"appServicePrincipalClientSecret\": \"$APP_SECRET\"|" ~/CEDev/appsettings.json
+fi
 
 # Show hint of how to proceed on first launch
 if [ ! -f ~/.cs-environment ]; then
