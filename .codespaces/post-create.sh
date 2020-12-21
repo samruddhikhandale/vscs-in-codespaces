@@ -133,5 +133,6 @@ fi
 
 if [ -n "$APP_SECRET" ]; then
   sed -i "s/\"appServicePrincipalClientSecret\": \"\"/\"appServicePrincipalClientSecret\": \"$APP_SECRET\"/" ~/CEDev/appsettings.json
+fi
 
 dotnet restore
