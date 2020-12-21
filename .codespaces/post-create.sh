@@ -127,4 +127,11 @@ else
   sed -i "s/\"developerAlias\": \"\"/\"developerAlias\": \"`git config user.name`\"/" ~/CEDev/appsettings.json
 fi
 
+if [ -n "$TUNNEL_KEY" ]; then
+  sed -i "s/\"tunnelRelayPrimaryAuthKey\": \"\"/\"tunnelRelayPrimaryAuthKey\": \"$TUNNEL_KEY\"/" ~/CEDev/appsettings.json
+fi
+
+if [ -n "$APP_SECRET" ]; then
+  sed -i "s/\"appServicePrincipalClientSecret\": \"\"/\"appServicePrincipalClientSecret\": \"$APP_SECRET\"/" ~/CEDev/appsettings.json
+
 dotnet restore
