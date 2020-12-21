@@ -8,7 +8,7 @@
 
 Please follow the [README on the codespaces-service branch](https://github.com/vsls-contrib/vscs-in-codespaces/blob/codespaces-service/README.md) to complete the individual developer setup.
 
-Specifically, make sure to complete the (one-time setup section)(https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-service#one-time-setup) **before creating the codespace**. 
+Specifically, make sure to complete the [one-time setup section](https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-service#one-time-setup) **before creating the codespace**. 
 
 After the init-repo script completes (You can check its status with the `Codespaces: View Creation Log` vscode command), Open `agent-development.code-workspace` from the file explorer and select `OPEN WORKSPACE`.  
 
