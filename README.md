@@ -22,4 +22,4 @@ You can run the `deploy-custom-agent.sh` script (on your path, source [here](htt
     3. Generate the agent artifacts with Cacade's `DevTool.dll`
     4. Upload to Azure to be used in your personal devstamp with vsclk-core's `VsoUtil.dll`.
 
-You may specify the `--no-build` flag to skip steps 1 and 2, although you'll need to have build at some point to have the `DevTool` and `VsoUtil` dlls present.
+You may specify the `--no-build` flag to skip steps 1 and 2, although you'll need to have built at some point to have the `DevTool` and `VsoUtil` dlls present.
