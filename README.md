@@ -47,7 +47,7 @@ That's it, you're ready to start creating Codespaces! :rocket:
 5. You can now use your devstamp as usual, setting the endpoint on your local .cloudenv-settings.json to your integrated dev tunnel URL, opening a new VS Code window, and creating Codespaces in your dev stamp on the old VS Codespaces extension.
 
 ## Known Issues and Planned Improvements
-* The backend service may crash the first time running it in a new Codespace. Suspending and resuming the Codespace usually resolves this, but we will continue to track the issue here [#1888](https://github.com/microsoft/vssaas-planning/issues/1888)
+* The backend service crashes sometimes. This seems to be an issue with the debugger, so running the services without the debugger (Ctrl + F5) should prevent this error. Please comment on this issue if the services continue to crash while running without the debugger [#1888](https://github.com/microsoft/vssaas-planning/issues/1888)
 
 ![image](https://user-images.githubusercontent.com/33612256/102268767-b3d03180-3ee9-11eb-8d95-96f1860fcea7.png)
 
