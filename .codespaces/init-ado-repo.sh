@@ -151,12 +151,13 @@ echo -e $PALETTE_LIGHT_YELLOW"\n ⌬ Fetching the repo\n"$PALETTE_RESET
 git reset --hard
 git checkout main
 
-git branch --track github-main
-
 # clone the ADO repo
 git pull origin $GIT_DEFAULT_BRANCH_NAME:$GIT_DEFAULT_BRANCH_NAME --force --no-tags
 
 git checkout $GIT_DEFAULT_BRANCH_NAME &>/dev/null
+
+git branch -d main
+git branch -d codespaces-service
 
 export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
 # replace env variable reference in the .npmrc
