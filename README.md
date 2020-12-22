@@ -8,9 +8,18 @@
 
 Please follow the [README on the codespaces-service branch](https://github.com/vsls-contrib/vscs-in-codespaces/blob/codespaces-service/README.md) to complete the individual developer setup.
 
-Specifically, make sure to complete the [one-time setup section](https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-service#one-time-setup) and set your environment variables **before creating the codespace**. 
+Specifically, make sure to:
+ 1. [One-time setup section](https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-service#one-time-setup) 
+ 2. set your environment variables (`ADO_PAT`)  **before creating the codespace**. 
 
-**After** the init-repo script completes (You can check its status with the `Codespaces: View Creation Log` vscode command), Open `agent-development.code-workspace` from the file explorer and select `OPEN WORKSPACE`, or click the workspace pop-up that will automatically appear.
+**AFTER** the initialization script completes, open `agent-development.code-workspace` from the file explorer and select `OPEN WORKSPACE` (or click the workspace pop-up that will automatically appear). 
+
+> You can check provisioning status with the `Codespaces: View Creation Log` vscode command. You will see the text in the following image when complete.  It takes about a minute to clone and restore both repos!
+> 
+> ![3](images/3.png)
+
+
+### Organization
 
 This will give you a clean workspace organized like:
 
@@ -24,11 +33,21 @@ This will give you a clean workspace organized like:
     ├── ...
 ```
 
-Via the source control panel you can see changes you've made in Cascade, vsclk-core, or this bootstrap repo.  Make commits how you normally would for each platform.
+This will recursively pull in the workspace and `.vscode` config for each of the repos.  This will populate the "Run" with the relevant launch commands.
+
+![1](images/1.png)
+
+Run the command `Omnisharp: Select Project` to set VSCode's focus to the project you're working on.
+
+_Note: You may need to increase Omnisharp's "Project Load Timeout" to something larger than 200_
+
+![2](images/2.png)
+
+Via the source control panel you can see changes you've made in Cascade, vsclk-core, or this bootstrap repo.  Make commits how you normally for each individual repo.
 
 ![source-control](images/source-control.png)
 
-The `.codespaces` directory cloned from vscs-in-codespaces is not deleted, and can still be accessed via your terminal at `~/workspace/vscs-in-codespaces/.codespaces`.  The `.codespaces` directory is added to your `$PATH`, letting you run any scripts in that directory from any directory.
+The `.codespaces` directory cloned from vscs-in-codespaces is not deleted, and can still be accessed via your terminal at `~/workspace/vscs-in-codespaces/.codespaces`.  The `.codespaces` directory is added to your `$PATH`, letting you run any scripts in that directory from your terminal.
 
 ## How to...
 
