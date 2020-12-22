@@ -9,8 +9,8 @@
 Please follow the [README on the codespaces-service branch](https://github.com/vsls-contrib/vscs-in-codespaces/blob/codespaces-service/README.md) to complete the individual developer setup.
 
 Specifically, make sure to:
- 1. [One-time setup section](https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-service#one-time-setup) 
- 2. set your environment variables (`ADO_PAT`)  **before creating the codespace**. 
+ 1. Follow the [one-time setup section](https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-service#one-time-setup) 
+ 2. [Set](https://github.com/settings/codespaces/secrets/new) your environment variables **before creating the codespace**. 
 
 **AFTER** the initialization script completes, open `agent-development.code-workspace` from the file explorer and select `OPEN WORKSPACE` (or click the workspace pop-up that will automatically appear). 
 
@@ -53,7 +53,7 @@ The `.codespaces` directory cloned from vscs-in-codespaces is not deleted, and c
 
 ### Run Frontend + Backend Services
 
-Please check the README on the `codespaces-service` branch, found [here](https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-service#running-the-frontend-and-backend-services).
+Please check the README on the `codespaces-service` branch, found [here](https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-service#running-the-frontend-and-backend-services) for instructions and known issues.
 
 ### Deploy a Custom Agent
 
@@ -61,7 +61,15 @@ You can run the `deploy-custom-agent.sh` script (on your `$PATH`, source [here](
 
 1. Build Cascade
 2. Build Vsclk-Core
-3. Generate the agent artifacts with Cacade's `DevTool.dll`
+3. Generate the agent artifacts with Cascade's `DevTool.dll`
 4. Upload to Azure to be used in your personal devstamp with vsclk-core's `VsoUtil.dll`.
 
-You may specify the `--no-build` flag to skip steps 1 and 2, although you'll need to have built at some point to have the `DevTool` and `VsoUtil` dlls present.
+> You may specify the **`--no-build`** flag to skip steps 1 and 2, although you'll need to have built at some point to have the `DevTool` and `VsoUtil` dlls present.
+
+
+The output will look similar to this:
+
+![5](images/5.png)
+![7](images/7.png)
+
+Your appsettings.json file in `~/CEDEev` will be updated with the correct values.
