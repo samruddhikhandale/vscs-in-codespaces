@@ -28,11 +28,6 @@ check_err "generate artifacts with DevTool.dll"
 ARTIFACTS_PATH=`cat /tmp/gen_artifacts.txt | awk '/Artifact located at: /{print $NF}'`
 ARTIFACTS_ID=`echo $ARTIFACTS_PATH |grep -o '[0-9]\+'`
 
-echo "########"
-echo $ARTIFACTS_PATH
-echo $ARTIFACTS_ID
-echo "#####"
-
 echo "🚀 Uploading artifacts..."
 pushd $VSCLK_ROOT/bin/debug/VsoUtil
 UseSecretFromAppConfig=1
