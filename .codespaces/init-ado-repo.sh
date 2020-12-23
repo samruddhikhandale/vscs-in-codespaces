@@ -141,7 +141,6 @@ CLEAN_ADO_ORIGIN="${ADO_REPO_URL/https\:\/\//$EMPTY_STRING}"
 git remote remove github-origin &>/dev/null
 git remote rename origin github-origin &>/dev/null
 
-#git remote remove origin
 git remote add origin https://PAT:$ADO_PAT@$CLEAN_ADO_ORIGIN
 
 GIT_DEFAULT_BRANCH_NAME=$(git remote show origin | grep "HEAD branch\: " | sed 's/HEAD branch\: //g' | xargs)
@@ -156,8 +155,7 @@ git pull origin $GIT_DEFAULT_BRANCH_NAME:$GIT_DEFAULT_BRANCH_NAME --force --no-t
 
 git checkout $GIT_DEFAULT_BRANCH_NAME &>/dev/null
 
-git branch -d main
-git branch -d codespaces-service
+git remote remove github-origin
 
 export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
 # replace env variable reference in the .npmrc
