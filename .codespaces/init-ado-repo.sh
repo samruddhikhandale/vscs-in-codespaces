@@ -2,6 +2,8 @@
 
 clear
 
+GITHUB_BRANCH="$(git branch)"
+
 cp -Ru . ~/ado-in-codespaces
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -156,6 +158,8 @@ git pull origin $GIT_DEFAULT_BRANCH_NAME:$GIT_DEFAULT_BRANCH_NAME --force --no-t
 git checkout $GIT_DEFAULT_BRANCH_NAME &>/dev/null
 
 git remote remove github-origin
+git branch -d main
+git branch -d $GITHUB_BRANCH
 
 export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
 # replace env variable reference in the .npmrc
