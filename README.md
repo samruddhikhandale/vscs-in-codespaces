@@ -1,6 +1,6 @@
 # Agent Development _in Codespaces_
 
-> ⚠⚠ Branch is under construction.  Contact [jospicer](josh.spicer@microsoft.com) with questions. 
+> _Please file an issue and tag [Josh Spicer](https://github.com/joshspicer) with any issues._
 
 ## Getting Started
 
