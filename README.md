@@ -1,6 +1,6 @@
 # Agent Development _in Codespaces_
 
-> ⚠⚠ Branch is under construction.  Contact [jospicer](josh.spicer@microsoft.com) with questions. 
+> _Please file an issue and tag [Josh Spicer](https://github.com/joshspicer) with any issues._
 
 ## Getting Started
 
@@ -37,7 +37,9 @@ This will recursively pull in the workspace and `.vscode` config for each of the
 
 ![1](images/1.png)
 
-Run the command `Omnisharp: Select Project` to set VSCode's focus to the project you're working on.
+Run the VSCode command `Omnisharp: Select Project` to set VSCode's focus to the project you're working on.  Selecting a project will help omnisharp enable intellisense and other nice editor features for the code you're working on.
+
+For agent development you may want to select the `VSOnline.sln`.
 
 _Note: You may need to increase Omnisharp's "Project Load Timeout" to something larger than 200_
 
@@ -54,6 +56,8 @@ The `.codespaces` directory cloned from vscs-in-codespaces is not deleted, and c
 ### Run Frontend + Backend Services
 
 Please check the README on the `codespaces-service` branch, found [here](https://github.com/vsls-contrib/vscs-in-codespaces/tree/codespaces-service#running-the-frontend-and-backend-services) for instructions and known issues.
+
+One important known issue is that the FE and BE are run more reliably if started _without_ the debugger attached (Ctrl-F5).  See the `codespaces-services` branch for issue tracking and updates.
 
 ### Deploy a Custom Agent
 
