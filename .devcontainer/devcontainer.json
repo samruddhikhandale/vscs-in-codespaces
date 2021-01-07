@@ -3,7 +3,9 @@
 	"name": "Agent development in GitHub Codespaces",
 	// "image": "ghcr.io/vsls-contrib/vscs-in-codespaces:vsclk-core",
 	"settings": {
-		"terminal.integrated.shell.linux": "/bin/bash"
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"omnisharp.defaultLaunchSolution": "VSOnline.sln",
+		"omnisharp.projectLoadTimeout": 300
 	},
 	"extensions": [
 		"ms-dotnettools.csharp"

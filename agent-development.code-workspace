@@ -1,12 +1,15 @@
 {
     "folders": [
       {
-        "name": "Cascade",
-        "path": "./cascade"
+        "name": "VSOnline",
+        "path": "./cascade/src/VSOnline"
       },
       {
         "name": "vsclk-core",
         "path": "./vsclk-core"
       },
+      {
+        "path": "."
+      }
     ]
   }
