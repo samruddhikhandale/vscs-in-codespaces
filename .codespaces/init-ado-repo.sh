@@ -218,6 +218,7 @@ if [ "$ADO_PAT" != "$ADO_PAT_INPUT" ]; then
     # replace env variable reference in the .npmrc
     sed -i -E "s/_password=.+$/_password=$ADO_PAT_BASE64/g" ~/.npmrc
     # write the token to the env file
+    echo -e $"Writing ADO PAT to ~/.cs-environment"
     echo -e "export ADO_PAT=$ADO_PAT" >> ~/.cs-environment
 fi
 
