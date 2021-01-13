@@ -141,13 +141,13 @@ unset AZ_DO_PASSWORD_SUFFIX;
 if [ -z "$ADO_PAT" ]; then
     AZ_DO_PASSWORD_SUFFIX=""
 else
-    AZ_DO_PASSWORD_SUFFIX=$PALETTE_CYAN"(➥ to reuse old PAT)"$PALETTE_RESET
+    AZ_DO_PASSWORD_SUFFIX=$PALETTE_CYAN"(➥ to reuse saved PAT or ADO_PAT secret)"$PALETTE_RESET
 fi
 
 # reading the PAT
 unset CHARCOUNT
 unset ADO_PAT_INPUT
-PROMPT=" ↳ PAT code[R/W] + packaging[R]$AZ_DO_PASSWORD_SUFFIX: "
+printf " ↳ PAT code[R/W] + packaging[R]$AZ_DO_PASSWORD_SUFFIX: "
 
 stty -echo
 
@@ -185,7 +185,7 @@ if [ -z ${ADO_PAT_INPUT} ]; then
         exit 1
     else
         ADO_PAT_INPUT=$ADO_PAT
-        echo -e $PALETTE_DIM"\n  * reusing the old PAT."$PALETTE_RESET
+        echo -e $PALETTE_DIM"\n  * reusing saved PAT."$PALETTE_RESET
     fi
 fi
 
@@ -212,7 +212,7 @@ git pull origin $GIT_DEFAULT_BRANCH_NAME:$GIT_DEFAULT_BRANCH_NAME --force --no-t
 
 git checkout $GIT_DEFAULT_BRANCH_NAME &>/dev/null
 
-if [ "$ADO_PAT" != "$ADO_PAT_INPUT" ]; then
+if ! [ -z "$ADO_PAT_INPUT" ]; then
     export ADO_PAT=$ADO_PAT_INPUT
     export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
     # replace env variable reference in the .npmrc
@@ -288,7 +288,7 @@ fi
 
 # get the .npmrc file path
 unset NPMRC_FILE_PATH
-# 1. check the NPMRC_CONFIG_FILE_PATH variable set by the uer first
+# 1. check the NPMRC_CONFIG_FILE_PATH variable set by the user first
 if ! [ -z $NPMRC_CONFIG_FILE_PATH ] 2> /dev/null && [ -f $NPMRC_CONFIG_FILE_PATH ];
 then
     NPMRC_FILE_PATH=$NPMRC_CONFIG_FILE_PATH
