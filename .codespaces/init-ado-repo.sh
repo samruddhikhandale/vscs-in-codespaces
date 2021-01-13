@@ -156,7 +156,7 @@ git pull origin $GIT_DEFAULT_BRANCH_NAME:$GIT_DEFAULT_BRANCH_NAME --force --no-t
 git checkout $GIT_DEFAULT_BRANCH_NAME &>/dev/null
 
 git branch -D $(git remote show github-origin | grep " *pushes to *" | awk '{print $1}' | xargs) &>/dev/null
-git remote remove github-origin $>/dev/null
+git remote remove github-origin &>/dev/null
 
 export ADO_PAT_BASE64=$(echo -n $ADO_PAT | base64)
 # replace env variable reference in the .npmrc
