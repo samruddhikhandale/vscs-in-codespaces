@@ -1,7 +1,7 @@
 # add oh-my-bash
 wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O - | sh -C
 
-BASH_RC_FILE=~/.bashrc
+BASH_RC_FILE=~/.bashrc123
 
 PRE_OMB_BASH_CONFIG=~/.bashrc.pre-oh-my-bash
 if [ -f $PRE_OMB_BASH_CONFIG ]; then
